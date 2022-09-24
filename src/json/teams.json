@@ -1,0 +1,162 @@
+{
+   "Qatar": {
+      "name": "Qatar",
+      "xp": 49,
+      "flag": "🇶🇦"
+   },
+   "Ecuador": {
+      "name": "Ecuador",
+      "xp": 40,
+      "flag": "🇪🇨"
+   },
+   "Senegal": {
+      "name": "Senegal",
+      "xp": 35,
+      "flag": "🇸🇳"
+   },
+   "Netherlands": {
+      "name": "Netherlands",
+      "xp": 39,
+      "flag": "🇳🇱"
+   },
+   "England": {
+      "name": "England",
+      "xp": 48,
+      "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+   },
+   "Iran": {
+      "name": "Iran",
+      "xp": 34,
+      "flag": "🇮🇷"
+   },
+   "USA": {
+      "name": "USA",
+      "xp": 30,
+      "flag": "🇺🇸"
+   },
+   "Wales": {
+      "name": "Wales",
+      "xp": 25,
+      "flag": "🏴󠁧󠁢󠁷󠁬󠁳󠁿"
+   },
+   "Argentina": {
+      "name": "Argentina",
+      "xp": 27,
+      "flag": "🇦🇷"
+   },
+   "Saudi Arabia": {
+      "name": "Saudi-Arabia",
+      "xp": 37,
+      "flag": "🇸🇦"
+   },
+   "Mexico": {
+      "name": "Mexico",
+      "xp": 22,
+      "flag": "🇲🇽"
+   },
+   "Poland": {
+      "name": "Poland",
+      "xp": 19,
+      "flag": "🇵🇱"
+   },
+   "France": {
+      "name": "France",
+      "xp": 24,
+      "flag": "🇫🇷"
+   },
+   "Australia": {
+      "name": "Australia",
+      "xp": 20,
+      "flag": "🇦🇺"
+   },
+   "Denmark": {
+      "name": "Denmark",
+      "xp": 42,
+      "flag": "🇩🇰"
+   },
+   "Tunisia": {
+      "name": "Tunisia",
+      "xp": 38,
+      "flag": "🇹🇳"
+   },
+   "Spain": {
+      "name": "Spain",
+      "xp": 24,
+      "flag": "🇪🇸"
+   },
+   "Costa Rica": {
+      "name": "Costa-Rica",
+      "xp": 20,
+      "flag": "🇨🇷"
+   },
+   "Germany": {
+      "name": "Germany",
+      "xp": 42,
+      "flag": "🇩🇪"
+   },
+   "Japan": {
+      "name": "Japan",
+      "xp": 38,
+      "flag": "🇯🇵"
+   },
+   "Belgium": {
+      "name": "Belgium",
+      "xp": 24,
+      "flag": "🇧🇪"
+   },
+   "Canada": {
+      "name": "Canada",
+      "xp": 20,
+      "flag": "🇨🇦"
+   },
+   "Morocco": {
+      "name": "Morocco",
+      "xp": 42,
+      "flag": "🇲🇦"
+   },
+   "Croatia": {
+      "name": "Croatia",
+      "xp": 38,
+      "flag": "🇭🇷"
+   },
+   "Brazil": {
+      "name": "Brazil",
+      "xp": 24,
+      "flag": "🇧🇷"
+   },
+   "Serbia": {
+      "name": "Serbia",
+      "xp": 38,
+      "flag": "🇷🇸"
+   },
+   "Switzerland": {
+      "name": "Switzerland",
+      "xp": 20,
+      "flag": "🇨🇭"
+   },
+   "Cameroun": {
+      "name": "Cameroun",
+      "xp": 4,
+      "flag": "🇨🇲"
+   },
+   "Portugal": {
+      "name": "Portugal",
+      "xp": 24,
+      "flag": "🇵🇹"
+   },
+   "Ghana": {
+      "name": "Ghana",
+      "xp": 20,
+      "flag": "🇬🇭"
+   },
+   "Uruguay": {
+      "name": "Uruguay",
+      "xp": 42,
+      "flag": "🇺🇾"
+   },
+   "South Korea": {
+      "name": "South-Korea",
+      "xp": 38,
+      "flag": "🇰🇷"
+   }
+}
