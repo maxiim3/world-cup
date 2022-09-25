@@ -16,27 +16,19 @@ export class TeamModel {
 	private readonly _name: string
 	private _xp: number
 	private readonly _flag: string
-	private _points: number
+	points: number
 	private readonly _id: string
 
 	constructor(json:JsonTypeProps) {
 		this._name = json.name
 		this._xp = json.xp
 		this._flag = json.flag
-		this._points = 0
+		this.points = 0
 		this._id = Tools.generateId(this._name) as string
 	}
 
 	get id(): string {
 		return this._id
-	}
-
-	set points(value) {
-		this._points = value
-	}
-
-	get points() {
-		return this._points
 	}
 
 	get flag() {

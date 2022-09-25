@@ -2,14 +2,13 @@ import React from "react"
 import ReactDOM from "react-dom/client"
 import App from "./ts/App"
 // import reportWebVitals from "./reportWebVitals"
-import "./sass/index.css"
+import "./sass/App.css"
+import Header from "./ts/Views/Header"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
 	<React.StrictMode>
-		<header>
-			<h1>WORLD CUP 2022</h1>
-		</header>
+		<Header/>
 		<App />
 	</React.StrictMode>
 )

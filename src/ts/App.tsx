@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import {TeamModel} from "./Models/TeamModel"
-import Groups from "./Groups"
-import Loader from "./Components/Loader"
+import Groups from "./Views/Groups"
+import Loader from "./Views/Loader"
 
 export enum Rounds {
 	Group,

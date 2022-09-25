@@ -1,18 +1,24 @@
-import {TeamModel} from "./Models/TeamModel"
+import {TeamModel} from "../Models/TeamModel"
 import React, {useEffect, useState} from "react"
-import Loader from "./Components/Loader"
+import Loader from "./Loader"
 import Group, {IGroupType} from "./Group"
 
 type GroupsType = IGroupType[]
 
-/*type GroupsProps = {
- initialTeams: TeamModel[]
- }*/
-
-const Groups = (props : {initialTeams : TeamModel[], onClick : () => void}) => {
+const Groups = (props: {initialTeams: TeamModel[]; onClick: () => void}) => {
 	const [loading, setLoading] = useState<Boolean>(true)
 	const [groups, setGroups] = useState<GroupsType>([])
 	useEffect(() => {
+		function getTeam(team1: string, team2: string, team3: string, team4: string): TeamModel[] {
+			return props.initialTeams.filter(
+				(team: TeamModel) =>
+					team.name.toLowerCase() === team1 ||
+					team.name.toLowerCase() === team2 ||
+					team.name.toLowerCase() === team3 ||
+					team.name.toLowerCase() === team4
+			)
+		}
+
 		const waiting = setTimeout(() => {
 			setGroups([
 				{key: "A", teams: getTeam("qatar", "ecuador", "senegal", "netherlands")},
@@ -28,23 +34,13 @@ const Groups = (props : {initialTeams : TeamModel[], onClick : () => void}) => {
 		}, 1500)
 
 		return () => clearTimeout(waiting)
-	}, [getTeam, setLoading])
-
-	function getTeam(team1: string, team2: string, team3: string, team4: string): TeamModel[] {
-		return props.initialTeams.filter(
-			(team: TeamModel) =>
-				team.name.toLowerCase() === team1 ||
-				team.name.toLowerCase() === team2 ||
-				team.name.toLowerCase() === team3 ||
-				team.name.toLowerCase() === team4
-		)
-	}
+	}, [setLoading])
 
 	if (loading) return <Loader>Loading Groups</Loader>
 	if (groups.length !== 0)
 		return (
-			<section className="groups">
-				<h2>Groups</h2>
+			<section className="round__container">
+				<h2 className={"round__title"}>Groups</h2>
 				{groups?.map(group => (
 					<Group
 						key={group.key}
