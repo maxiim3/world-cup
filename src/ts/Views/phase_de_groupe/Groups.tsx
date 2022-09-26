@@ -6,14 +6,14 @@ import NextRoundButton from "../static/NextRoundButton"
 
 type GroupsType = IGroupType[]
 
-const Groups = (props: {onChangeRound: () => void; initialTeams: TeamModel[]}) => {
+const Groups = (props: {onChangeRound: () => void; teams32: TeamModel[]}) => {
 	// loader
 	const [loading, setLoading] = useState<Boolean>(true)
 	// groups
 	const [groups, setGroups] = useState<GroupsType>([])
 	useEffect(() => {
 		function getTeam(team1: string, team2: string, team3: string, team4: string): TeamModel[] {
-			return props.initialTeams.filter(
+			return props.teams32.filter(
 				(team: TeamModel) =>
 					team.name.toLowerCase() === team1 ||
 					team.name.toLowerCase() === team2 ||
@@ -39,6 +39,32 @@ const Groups = (props: {onChangeRound: () => void; initialTeams: TeamModel[]}) =
 		return () => clearTimeout(waiting)
 	}, [setLoading])
 
+	/**
+	 * Est Incrémenté à chaque fois qu'un groupe est joué
+	 */
+	const [countGroupsPlayed, setCountGroupsPlayed] = useState(0)
+	useEffect(() => {
+		return () => {}
+	}, [countGroupsPlayed])
+
+	/**
+	 * @description countGroupsPlayed est incrémenté a chaque fois que les matchs d'un groupe sont générés
+	 * si le total de countGroupsPlayed est = a 8 => tous les groupes sont joués, alors "NextRoundButton" devient actif
+	 */
+	const [nextBtnActive, setNextBtnActive] = useState(false)
+	useEffect(() => {
+		if (countGroupsPlayed === 8) {
+			setNextBtnActive(true)
+		}
+		return () => {
+		}
+	}, [countGroupsPlayed])
+
+
+	function countGroups() {
+		setCountGroupsPlayed(countGroupsPlayed + 1)
+	}
+
 	if (loading) return <Loader />
 
 	if (groups.length !== 0)
@@ -49,9 +75,15 @@ const Groups = (props: {onChangeRound: () => void; initialTeams: TeamModel[]}) =
 					<Group
 						key={group.key}
 						group={group}
+						groupHasPlayed={countGroups}
 					/>
 				))}
-				<NextRoundButton onClick={props.onChangeRound}>Next Round</NextRoundButton>
+
+				<NextRoundButton
+					nextBtnActive={nextBtnActive}
+					onClick={props.onChangeRound}>
+					Aller aux huitièmes de finale
+				</NextRoundButton>
 			</section>
 		)
 	else return <h2>Houston we have a problem...</h2>

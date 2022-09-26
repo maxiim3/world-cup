@@ -5,7 +5,7 @@ import Loader from "../static/Loader"
 import {Match} from "../../Models/MatchModel"
 import {TeamRow} from "./TeamRow"
 
-const Group = (props: {group: IGroupType}) => {
+const Group = (props: {group: IGroupType, groupHasPlayed: () => void}) => {
 	const [loading, setLoading] = useState(false)
 
 	const tBodyId = Tools.generateId("id", "tbody", props.group.key)
@@ -16,6 +16,7 @@ const Group = (props: {group: IGroupType}) => {
 	async function simulateGroups() {
 		setLoading(true)
 		setGroupHasPlayed(true)
+		props.groupHasPlayed()
 
 		const $btn = document.getElementById(CSS.escape(buttonID)) as HTMLButtonElement
 		$btn.disabled = true
@@ -58,13 +59,16 @@ const Group = (props: {group: IGroupType}) => {
 					) : (
 						props.group.teams
 							.sort((a, b) => {
-								if (groupHasPlayed && (b.points === a.points)) return b.xp - a.xp
+								if (groupHasPlayed && b.points === a.points) return b.xp - a.xp
 								return b.points - a.points
 							})
 							.map(team => {
 								let isWinner: string = ""
 								if (groupHasPlayed) {
-									isWinner = props.group.teams.indexOf(team) < 2 ? "true" : "false"
+									if (props.group.teams.indexOf(team) < 2) {
+										isWinner = "true"
+										team.isQualified = true
+									} else isWinner = "false"
 								}
 								return (
 									<TeamRow

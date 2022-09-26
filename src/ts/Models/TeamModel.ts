@@ -17,6 +17,7 @@ export class TeamModel {
 	private _xp: number
 	private readonly _flag: string
 	points: number
+	isQualified : boolean
 	private readonly _id: string
 
 	constructor(json:JsonTypeProps) {
@@ -25,6 +26,7 @@ export class TeamModel {
 		this._flag = json.flag
 		this.points = 0
 		this._id = Tools.generateId(this._name) as string
+		this.isQualified = false
 	}
 
 	get id(): string {
