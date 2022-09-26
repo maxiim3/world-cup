@@ -1,12 +1,15 @@
-import {TeamModel} from "../Models/TeamModel"
+import {TeamModel} from "../../Models/TeamModel"
 import React, {useEffect, useState} from "react"
-import Loader from "./Loader"
+import Loader from "../static/Loader"
 import Group, {IGroupType} from "./Group"
+import NextRoundButton from "../static/NextRoundButton"
 
 type GroupsType = IGroupType[]
 
-const Groups = (props: {initialTeams: TeamModel[]; onClick: () => void}) => {
+const Groups = (props: {onChangeRound: () => void; initialTeams: TeamModel[]}) => {
+	// loader
 	const [loading, setLoading] = useState<Boolean>(true)
+	// groups
 	const [groups, setGroups] = useState<GroupsType>([])
 	useEffect(() => {
 		function getTeam(team1: string, team2: string, team3: string, team4: string): TeamModel[] {
@@ -36,7 +39,8 @@ const Groups = (props: {initialTeams: TeamModel[]; onClick: () => void}) => {
 		return () => clearTimeout(waiting)
 	}, [setLoading])
 
-	if (loading) return <Loader>Loading Groups</Loader>
+	if (loading) return <Loader />
+
 	if (groups.length !== 0)
 		return (
 			<section className="round__container">
@@ -47,7 +51,7 @@ const Groups = (props: {initialTeams: TeamModel[]; onClick: () => void}) => {
 						group={group}
 					/>
 				))}
-				<button onClick={props.onClick}>Finish Round</button>
+				<NextRoundButton onClick={props.onChangeRound}>Next Round</NextRoundButton>
 			</section>
 		)
 	else return <h2>Houston we have a problem...</h2>

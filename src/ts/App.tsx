@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import {TeamModel} from "./Models/TeamModel"
-import Groups from "./Views/Groups"
-import Loader from "./Views/Loader"
+import Loader from "./Views/static/Loader"
+import Groups from "./Views/phase_de_groupe/Groups"
 
 export enum Rounds {
 	Group,
@@ -50,7 +50,7 @@ function App() {
 		}
 	}, [round])
 
-	if (loading) return <Loader>Waiting...</Loader>
+	if (loading) return <Loader/>
 	else if (!teams || error) {
 		setError(new Error("Couldn't load ressources"))
 		return <h1>Oups...</h1>
@@ -60,14 +60,14 @@ function App() {
 					{round === Rounds.Group && (
 						<Groups
 							initialTeams={teams}
-							onClick={() => setRound(Rounds.Huitieme)}
+							onChangeRound={() => setRound(Rounds.Huitieme)}
 						/>
 					)}
 					{round === Rounds.Huitieme && <div> C'est les Huitièmes!</div>}
 				</main>
 		)
 	else {
-		return <Loader>You shouldn't be here...</Loader>
+		return <Loader/>
 	}
 }
 

@@ -1,33 +1,8 @@
 @use "reset";
-@use "Components/loader";
+@use "base";
+
 @use "Static/header";
+@use "Static/switchRoundBtn";
+
+@use "Components/loader";
 @use "Components/groups";
-
-h2 {
-	font-size: 3.6rem;
-	flex-basis: 100%;
-	text-align: center;
-}
-
-h3 {
-	font-size: 2.4rem;
-}
-
-main {
-	$bgColor: rgba(66, 132, 33, 0.13);
-	$lineColor: rgba(163, 188, 124, 0.2);
-	background: $bgColor repeating-linear-gradient(45deg, $lineColor, $lineColor 2.5px, $bgColor 6.5px, $bgColor 12.5px);
-}
-
-.round__container {
-  display: flex;
-  justify-content: space-around;
-  flex-flow: row wrap;
-  gap: 3rem;
-  padding: 25px 20px;
-}
-.round__title {
-	color: #281313;
-	margin-bottom: 1rem;
-	text-align: center;
-}

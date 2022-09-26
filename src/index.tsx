@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client"
 import App from "./ts/App"
 // import reportWebVitals from "./reportWebVitals"
 import "./sass/App.css"
-import Header from "./ts/Views/Header"
+import Header from "./ts/Views/static/Header"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(

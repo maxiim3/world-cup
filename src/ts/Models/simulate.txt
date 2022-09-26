@@ -92,10 +92,7 @@ class App {
          runBtn.removeEventListener('click', await poules)
       }
          // const nextBtn = this.setControl('poules')
-         // todo set 'SEE RESULT' in new modal
-         // todo ensuite, 'Go to Eight's'
-         // todo naviguer a limage dun carousel entre les 'pages'
-         // todo le design est immonde 🤮
+
       // wc.emulateRoundOf16()
    }
    async init() {
