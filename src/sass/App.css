@@ -236,7 +236,10 @@ td {
   color: #6f6e6e;
 }
 
-.btn__simulate-group {
+.btn__simulate-3,
+.btn__simulate-0,
+.btn__simulate-1,
+.btn__simulate-2 {
   background: #090707;
   color: white;
   position: absolute;
@@ -250,7 +253,10 @@ td {
   opacity: 0.35;
   transition: all 250ms;
 }
-.btn__simulate-group:hover {
+.btn__simulate-3:hover,
+.btn__simulate-0:hover,
+.btn__simulate-1:hover,
+.btn__simulate-2:hover {
   cursor: pointer;
   background: white;
   color: #090707;
@@ -258,7 +264,10 @@ td {
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.45);
   opacity: 1;
 }
-.btn__simulate-group:disabled {
+.btn__simulate-3:disabled,
+.btn__simulate-0:disabled,
+.btn__simulate-1:disabled,
+.btn__simulate-2:disabled {
   display: none;
 }
 

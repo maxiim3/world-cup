@@ -3,9 +3,9 @@ import {TeamModel} from "../../Models/TeamModel"
 import {Tools} from "../../Tools/Tools"
 import Loader from "../static/Loader"
 import {Match} from "../../Models/MatchModel"
-import {TeamRow} from "./TeamRow"
+import {TeamRow} from "../static/TeamRow"
 
-const Group = (props: {group: IGroupType, groupHasPlayed: () => void}) => {
+const Group = (props: {group: IGroupType; groupHasPlayed: () => void}) => {
 	const [loading, setLoading] = useState(false)
 
 	const tBodyId = Tools.generateId("id", "tbody", props.group.key)
@@ -13,13 +13,12 @@ const Group = (props: {group: IGroupType, groupHasPlayed: () => void}) => {
 
 	const [groupHasPlayed, setGroupHasPlayed] = useState(false)
 
-	async function simulateGroups() {
+	async function simulateGroups(event: React.MouseEvent<HTMLButtonElement>) {
 		setLoading(true)
 		setGroupHasPlayed(true)
 		props.groupHasPlayed()
 
-		const $btn = document.getElementById(CSS.escape(buttonID)) as HTMLButtonElement
-		$btn.disabled = true
+		event.currentTarget.disabled = true
 
 		const matchs = [
 			new Match(props.group.teams[0], props.group.teams[1]),
@@ -75,6 +74,7 @@ const Group = (props: {group: IGroupType, groupHasPlayed: () => void}) => {
 										key={Tools.generateId(team.id)}
 										team={team}
 										isWinner={isWinner}
+										initialPoints={team.points}
 									/>
 								)
 							})
@@ -83,8 +83,8 @@ const Group = (props: {group: IGroupType, groupHasPlayed: () => void}) => {
 			</table>
 			<button
 				id={buttonID}
-				className={"btn__simulate-group"}
-				onClick={() => simulateGroups()}>
+				className={"btn__simulate-0"}
+				onClick={(event: React.MouseEvent<HTMLButtonElement>) => simulateGroups(event)}>
 				Simulate
 			</button>
 		</article>

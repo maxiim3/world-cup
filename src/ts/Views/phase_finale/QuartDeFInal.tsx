@@ -6,11 +6,11 @@ import {MatchDePhaseFinal} from "./MatchDePhaseFinal"
 import NextRoundButton from "../static/NextRoundButton"
 import {Rounds} from "../../App"
 
-export function HuitiemeDeFinal(props: {
-	teams16: TeamModel[]
+export function QuartDeFinal (props: {
+	teams8: TeamModel[]
 	round: Rounds
 	setRound: (state: Rounds) => void
-	setTeams8: (state: TeamModel[]) => void
+	setTeams4: (state: TeamModel[]) => void
 }) {
 	const [loading, setLoading] = useState<Boolean>(true)
 
@@ -21,7 +21,7 @@ export function HuitiemeDeFinal(props: {
 	const [countMatchPlayed, setCountMatchPlayed] = useState(0)
 
 	useEffect(() => {
-		if (countMatchPlayed === 8) setNextBtnIsEnable(true)
+		if (countMatchPlayed === 4) setNextBtnIsEnable(true)
 		return () => {}
 	}, [countMatchPlayed, setNextBtnIsEnable])
 
@@ -29,14 +29,8 @@ export function HuitiemeDeFinal(props: {
 	useEffect(() => {
 		const waiting = setTimeout(() => {
 			setMatchs([
-				[props.teams16[0], props.teams16[1]],
-				[props.teams16[2], props.teams16[3]],
-				[props.teams16[4], props.teams16[5]],
-				[props.teams16[6], props.teams16[7]],
-				[props.teams16[8], props.teams16[9]],
-				[props.teams16[10], props.teams16[11]],
-				[props.teams16[12], props.teams16[13]],
-				[props.teams16[14], props.teams16[15]],
+				[props.teams8[0], props.teams8[3]],
+				[props.teams8[2], props.teams8[1]],
 			])
 			setLoading(false)
 		}, 850)
@@ -46,9 +40,9 @@ export function HuitiemeDeFinal(props: {
 
 	function handleNextRound() {
 		setNextBtnIsEnable(false)
-		const qualifiedTeams: TeamModel[] = props.teams16.filter(team => team.isQualified)
-		props.setTeams8(qualifiedTeams)
-		props.setRound(Rounds.Quart)
+		const qualifiedTeams: TeamModel[] = props.teams8.filter(team => team.isQualified)
+		props.setTeams4(qualifiedTeams)
+		props.setRound(Rounds.Demi)
 	}
 
 	if (loading) return <Loader />
@@ -62,26 +56,26 @@ export function HuitiemeDeFinal(props: {
 					style={{width: 350, height: 65, fontSize: 32, cursor: "pointer"}}
 					onClick={() => {
 						const htmlButtonElements = [
-							...document.querySelectorAll(".btn__simulate-1"),
+							...document.querySelectorAll(".btn__simulate-2"),
 						] as HTMLButtonElement[]
 						htmlButtonElements.forEach(btn => {
 							setTimeout(() => {
 								btn.click()
-							}, 250)
+							}, 850)
 						})
 					}}>
 					Simulate all Match
 				</button>
-				<h2 className={"round__title"}>Huitieme de Finale</h2>
-				{matchs.map(teams => (
+				<h2 className={"round__title"}>Quart de Finale</h2>
+{/*				{matchs.map(teams => (
 					<MatchDePhaseFinal
-						key={`${(Math.random() * 1000000).toString()}  ${Rounds.Huitieme}`}
+						key={`${(Math.random() * 1000000).toString()} ${Rounds.Quart}`}
 						id={Tools.generateId(matchs.indexOf(teams).toString())}
 						teams={teams}
 						onClick={() => setCountMatchPlayed(countMatchPlayed + 1)}
-						label={Rounds.Huitieme}
+						label={Rounds.Quart}
 					/>
-				))}
+				))}*/}
 				<NextRoundButton
 					nextBtnActive={nextBtnIsEnable}
 					onClick={() => handleNextRound()}>

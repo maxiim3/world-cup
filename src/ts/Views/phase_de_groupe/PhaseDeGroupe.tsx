@@ -3,13 +3,30 @@ import React, {useEffect, useState} from "react"
 import Loader from "../static/Loader"
 import Group, {IGroupType} from "./Group"
 import NextRoundButton from "../static/NextRoundButton"
+import {Rounds} from "../../App"
 
 type GroupsType = IGroupType[]
 
-const PhaseDeGroupe = (props: {teams32: TeamModel[]}) => {
-	// loader
-	const [loading, setLoading] = useState<Boolean>(true)
-	// groups
+const PhaseDeGroupe = (props: {
+	teams32: TeamModel[]
+	round: Rounds
+	setRound: (state: Rounds) => void
+	setTeams16: (state: TeamModel[]) => void
+}) => {
+	const [loading, setLoading] = useState(true)
+
+	const [nextBtnIsEnable, setNextBtnIsEnable] = useState<boolean>(false)
+	/**
+	 * Est Incrémenté à chaque fois qu'un groupe est joué
+	 */
+	const [countGroupsPlayed, setCountGroupsPlayed] = useState(0)
+
+	useEffect(() => {
+		if (countGroupsPlayed === 8) setNextBtnIsEnable(true)
+		return () => {}
+	}, [countGroupsPlayed, setNextBtnIsEnable])
+
+	// groupes
 	const [groups, setGroups] = useState<GroupsType>([])
 	useEffect(() => {
 		function getTeam(team1: string, team2: string, team3: string, team4: string): TeamModel[] {
@@ -33,39 +50,55 @@ const PhaseDeGroupe = (props: {teams32: TeamModel[]}) => {
 				{key: "G", teams: getTeam("brazil", "serbia", "switzerland", "cameroun")},
 				{key: "H", teams: getTeam("portugal", "ghana", "uruguay", "south-korea")},
 			])
+		}, 300)
+		return () => {
+			clearTimeout(waiting)
 			setLoading(false)
-		}, 1500)
+		}
+	}, [setLoading, props.teams32])
 
-		return () => clearTimeout(waiting)
-	}, [setLoading])
+	function handleNextRound() {
+		setNextBtnIsEnable(false)
+		const qualifiedTeams: TeamModel[] = props.teams32.filter(team => team.isQualified)
+		props.setTeams16(qualifiedTeams)
 
-	/**
-	 * Est Incrémenté à chaque fois qu'un groupe est joué
-	 */
-	const [countGroupsPlayed, setCountGroupsPlayed] = useState(0)
-	useEffect(() => {
-		return () => {}
-	}, [countGroupsPlayed])
-
-
-	function countGroups() {
-		setCountGroupsPlayed(countGroupsPlayed + 1)
+		props.setRound(Rounds.Huitieme)
 	}
 
 	if (loading) return <Loader />
-
-	if (groups.length !== 0)
+	else if (groups.length !== 0)
 		return (
 			<section className="round__container">
+				{/**
+				 Add Click on all BTN to simulate all groups at once
+				 */}
+				<button
+					style={{width: 350, height: 65, fontSize: 32, cursor: "pointer"}}
+					onClick={() => {
+						const htmlButtonElements = [
+							...document.querySelectorAll(".btn__simulate-0"),
+						] as HTMLButtonElement[]
+						htmlButtonElements.forEach(btn => {
+							setTimeout(() => {
+								btn.click()
+							}, 850)
+						})
+					}}>
+					Simulate all Groups
+				</button>
 				<h2 className={"round__title"}>Groups</h2>
 				{groups?.map(group => (
 					<Group
 						key={group.key}
 						group={group}
-						groupHasPlayed={countGroups}
+						groupHasPlayed={() => setCountGroupsPlayed(countGroupsPlayed + 1)}
 					/>
 				))}
-
+				<NextRoundButton
+					nextBtnActive={nextBtnIsEnable}
+					onClick={() => handleNextRound()}>
+					Next Round
+				</NextRoundButton>
 			</section>
 		)
 	else return <h2>Houston we have a problem...</h2>

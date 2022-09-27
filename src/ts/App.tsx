@@ -5,6 +5,7 @@ import PhaseDeGroupe from "./Views/phase_de_groupe/PhaseDeGroupe"
 import {HuitiemeDeFinal} from "./Views/phase_finale/HuitiemeDeFinal"
 import useBoolean from "./Hooks/useBoolean"
 import NextRoundButton from "./Views/static/NextRoundButton"
+import {QuartDeFinal} from "./Views/phase_finale/QuartDeFInal"
 
 export enum Rounds {
 	Group,
@@ -14,55 +15,31 @@ export enum Rounds {
 	Finale,
 }
 
-export enum DOMState {
-	Loading,
-	Error,
-	HasChanged,
-	OK,
-}
-
 function App() {
-	const [state, setState] = useState(DOMState.Loading)
+	//region APP-STATE
+	const [error, setError] = useState<Error | null>(null)
+	const handleStatePropagation = (err: Error) => setError(err)
+
 	const [loading, setLoading] = useState<boolean>(true)
+	const handleLoadingPropagation = (state: boolean) => setLoading(state)
+	//endregion
 
-	const [error, setError] = useState<null | Error>(null)
-
-	/*const [DOMChange, setDOMChange] = useState<boolean>(false)*/
-	const {state: DOMChange, setState: setDOMChange} = useBoolean(false)
-
+	//region ROUNDS
 	const [round, setRound] = useState(Rounds.Group)
 	useEffect(() => {
 		setLoading(true)
-		if (DOMChange) {
-			switchRound()
-		}
 
 		const wait = setTimeout(() => {
 			setLoading(false)
-		}, 1200)
+		}, 550)
 		return () => {
 			clearTimeout(wait)
 		}
-	}, [round, setRound, DOMChange])
+	}, [round, setRound])
+	const handleRoundPropagation = (state: Rounds) => setRound(state)
+	//endregion
 
-	function switchRound() {
-		setDOMChange.setFalse()
-		switch (round) {
-			case Rounds.Group:
-				setRound(Rounds.Huitieme)
-				break
-			case Rounds.Huitieme:
-				setRound(Rounds.Quart)
-				break
-			case Rounds.Quart:
-				setRound(Rounds.Demi)
-				break
-			case Rounds.Demi:
-				setRound(Rounds.Finale)
-				break
-		}
-	}
-
+	//region HANDLE-TEAMS
 	const [teams32, setTeams32] = useState<TeamModel[] | null>(null)
 	useEffect(() => {
 		fetch("api/teams.json")
@@ -84,51 +61,64 @@ function App() {
 				setError(err)
 				console.error("Error :" + err)
 			})
-			.finally(() => setLoading(false))
 	}, [])
 
 	const [teams16, setTeams16] = useState<TeamModel[] | null>(teams32)
-	useEffect(() => {
-		if (teams32 !== null && round === Rounds.Huitieme) setTeams16(teams32.filter(team => team.isQualified))
+	const handleQualifiedTeamsFor8thFinalPropagation = (teams: TeamModel[]) => setTeams16(teams)
 
-		return () => {
-			console.log("TEAMS 16")
-			console.log(teams16)
-		}
-	}, [round, setRound, teams32, setTeams16])
+	const [teams8, setTeams8] = useState<TeamModel[] | null>(teams16)
+	const handleQualifiedTeamsFor4thFinalPropagation = (teams: TeamModel[]) => setTeams8(teams)
+
+	const [teams4, setTeams4] = useState<TeamModel[] | null>(teams8)
+	const handleQualifiedTeamsForSemiFinalPropagation = (teams: TeamModel[]) => setTeams4(teams)
+
+	const [teamsFinal, setTeamsFinal] = useState<TeamModel[] | null>(teams4)
+	const handleQualifiedTeamsForFinalPropagation = (teams: TeamModel[]) => setTeamsFinal(teams)
+
+	const [winner, setWinner] = useState<TeamModel | null>()
+	const handleWinnerPropagation = (team: TeamModel) => setWinner(team)
+	//endregion
 
 	if (loading) return <Loader />
 	else if (!teams32 || error) {
-		setError(new Error("Couldn't load ressources"))
 		return <h1>Oups...</h1>
 	} else if (teams32.length !== 0)
 		return (
 			<main>
-				{/**
-				 Add Click on all BTN to simulate all groups at once
-				 */}
-				<button
-					style={{width: 350, height: 65, fontSize: 32, cursor: "pointer"}}
-					onClick={() => {
-						const htmlButtonElements = [
-							...document.querySelectorAll(".btn__simulate-group"),
-						] as HTMLButtonElement[]
-						htmlButtonElements.forEach(btn => {
-							setTimeout(() => {
-								btn.click()
-							}, 850)
-						})
-					}}>
-					SimulateALlGroups
-				</button>
-				{round === Rounds.Group && teams32 && <PhaseDeGroupe teams32={teams32} />}
-				{round === Rounds.Huitieme && teams16 && <HuitiemeDeFinal teams16={teams16} />}
-
-				<NextRoundButton
-					nextBtnActive={true}
-					onClick={() => setDOMChange.setTrue()}>
-					Next Round
-				</NextRoundButton>
+				{round === Rounds.Group && teams32 && (
+					<PhaseDeGroupe
+						teams32={teams32}
+						round={round}
+						setRound={handleRoundPropagation}
+						setTeams16={handleQualifiedTeamsFor8thFinalPropagation}
+					/>
+				)}
+				{round === Rounds.Huitieme && teams16 && (
+					<HuitiemeDeFinal
+						teams16={teams16}
+						round={round}
+						setRound={handleRoundPropagation}
+						setTeams8={handleQualifiedTeamsFor4thFinalPropagation}
+					/>
+				)}
+				{round === Rounds.Quart && teams8 && (
+					<QuartDeFinal
+						teams8={teams8}
+						round={round}
+						setRound={handleRoundPropagation}
+						setTeams4={handleQualifiedTeamsForSemiFinalPropagation}
+					/>
+				)}
+				{round === Rounds.Demi && (
+					<div>
+						<h2>Demi!!!</h2>
+					</div>
+				)}
+				{round === Rounds.Finale && (
+					<div>
+						<h2>Finale!!!</h2>
+					</div>
+				)}
 			</main>
 		)
 	else {

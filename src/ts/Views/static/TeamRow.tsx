@@ -2,8 +2,8 @@ import {TeamModel} from "../../Models/TeamModel"
 import React, {useEffect, useState} from "react"
 import {Tools} from "../../Tools/Tools"
 
-export const TeamRow = (props: {team: TeamModel, isWinner: string}) => {
-	const [points, setPoints] = useState(props.team.points)
+export const TeamRow = (props: {team: TeamModel, isWinner: string, initialPoints : number}) => {
+	const [points, setPoints] = useState(props.initialPoints)
 	useEffect(() => {
 		return () => {}
 	}, [points])
