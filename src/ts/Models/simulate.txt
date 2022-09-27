@@ -102,7 +102,7 @@ class App {
       const wc = new WorldCup(this.teams)
       const groups = wc.mapGroups()
 
-      const $tables = new Groups(groups)
+      const $tables = new PhaseDeGroupe(groups)
       await $tables.renderTables()
 
       await this.scenario(wc, groups)

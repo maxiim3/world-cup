@@ -1,27 +1,52 @@
 import React, {useEffect, useState} from "react"
 import {TeamModel} from "./Models/TeamModel"
 import Loader from "./Views/static/Loader"
-import Groups from "./Views/phase_de_groupe/Groups"
+import PhaseDeGroupe from "./Views/phase_de_groupe/PhaseDeGroupe"
 import {HuitiemeDeFinal} from "./Views/phase_finale/HuitiemeDeFinal"
-import useDOMIsUpdated from "./Hooks/useBoolean"
 import useBoolean from "./Hooks/useBoolean"
+import NextRoundButton from "./Views/static/NextRoundButton"
 
 export enum Rounds {
 	Group,
 	Huitieme,
-	Seizieme,
 	Quart,
 	Demi,
 	Finale,
 }
 
+export enum DOMState {
+	Loading,
+	Error,
+	HasChanged,
+	OK,
+}
+
 function App() {
+	const [state, setState] = useState(DOMState.Loading)
+	const [loading, setLoading] = useState<boolean>(true)
+
+	const [error, setError] = useState<null | Error>(null)
+
 	/*const [DOMChange, setDOMChange] = useState<boolean>(false)*/
-	const {state: DOMChange, setState:setDOMChange} = useBoolean(false)
+	const {state: DOMChange, setState: setDOMChange} = useBoolean(false)
+
 	const [round, setRound] = useState(Rounds.Group)
+	useEffect(() => {
+		setLoading(true)
+		if (DOMChange) {
+			switchRound()
+		}
+
+		const wait = setTimeout(() => {
+			setLoading(false)
+		}, 1200)
+		return () => {
+			clearTimeout(wait)
+		}
+	}, [round, setRound, DOMChange])
 
 	function switchRound() {
-			setDOMChange.setFalse()
+		setDOMChange.setFalse()
 		switch (round) {
 			case Rounds.Group:
 				setRound(Rounds.Huitieme)
@@ -38,24 +63,6 @@ function App() {
 		}
 	}
 
-	useEffect(() => {
-		setLoading(true)
-		if (DOMChange) {
-			switchRound()
-		}
-
-		const wait = setTimeout(() => {
-			setLoading(false)
-
-			console.log("round " + round)
-		}, 1200)
-		return () => {
-			clearTimeout(wait)
-		}
-	}, [round, setRound, DOMChange])
-
-	const [loading, setLoading] = useState<boolean>(true)
-	const [error, setError] = useState<null | Error>(null)
 	const [teams32, setTeams32] = useState<TeamModel[] | null>(null)
 	useEffect(() => {
 		fetch("api/teams.json")
@@ -114,18 +121,14 @@ function App() {
 					}}>
 					SimulateALlGroups
 				</button>
-				{round === Rounds.Group && teams32 && (
-					<Groups
-						teams32={teams32}
-						onChangeRound={() => setDOMChange.setTrue()}
-					/>
-				)}
-				{round === Rounds.Huitieme && teams16 && (
-					<HuitiemeDeFinal
-						teams16={teams16}
-						onChangeRound={() => setDOMChange.setTrue()}
-					/>
-				)}
+				{round === Rounds.Group && teams32 && <PhaseDeGroupe teams32={teams32} />}
+				{round === Rounds.Huitieme && teams16 && <HuitiemeDeFinal teams16={teams16} />}
+
+				<NextRoundButton
+					nextBtnActive={true}
+					onClick={() => setDOMChange.setTrue()}>
+					Next Round
+				</NextRoundButton>
 			</main>
 		)
 	else {

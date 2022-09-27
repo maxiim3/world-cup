@@ -6,7 +6,7 @@ import NextRoundButton from "../static/NextRoundButton"
 
 type GroupsType = IGroupType[]
 
-const Groups = (props: {onChangeRound: () => void; teams32: TeamModel[]}) => {
+const PhaseDeGroupe = (props: {teams32: TeamModel[]}) => {
 	// loader
 	const [loading, setLoading] = useState<Boolean>(true)
 	// groups
@@ -47,19 +47,6 @@ const Groups = (props: {onChangeRound: () => void; teams32: TeamModel[]}) => {
 		return () => {}
 	}, [countGroupsPlayed])
 
-	/**
-	 * @description countGroupsPlayed est incrémenté a chaque fois que les matchs d'un groupe sont générés
-	 * si le total de countGroupsPlayed est = a 8 => tous les groupes sont joués, alors "NextRoundButton" devient actif
-	 */
-	const [nextBtnActive, setNextBtnActive] = useState(false)
-	useEffect(() => {
-		if (countGroupsPlayed === 8) {
-			setNextBtnActive(true)
-		}
-		return () => {
-		}
-	}, [countGroupsPlayed])
-
 
 	function countGroups() {
 		setCountGroupsPlayed(countGroupsPlayed + 1)
@@ -79,13 +66,8 @@ const Groups = (props: {onChangeRound: () => void; teams32: TeamModel[]}) => {
 					/>
 				))}
 
-				<NextRoundButton
-					nextBtnActive={nextBtnActive}
-					onClick={props.onChangeRound}>
-					Aller aux huitièmes de finale
-				</NextRoundButton>
 			</section>
 		)
 	else return <h2>Houston we have a problem...</h2>
 }
-export default Groups
+export default PhaseDeGroupe
