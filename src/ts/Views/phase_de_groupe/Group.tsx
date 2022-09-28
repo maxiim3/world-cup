@@ -5,7 +5,7 @@ import Loader from "../static/Loader"
 import {Match} from "../../Models/MatchModel"
 import {TeamRow} from "../static/TeamRow"
 
-const Group = (props: {group: IGroupType; groupHasPlayed: () => void}) => {
+const Group = (props: {group: IGroupType; /*groupHasPlayed: () => void*/}) => {
 	const [loading, setLoading] = useState(false)
 
 	const tBodyId = Tools.generateId("id", "tbody", props.group.key)
@@ -16,7 +16,7 @@ const Group = (props: {group: IGroupType; groupHasPlayed: () => void}) => {
 	async function simulateGroups(event: React.MouseEvent<HTMLButtonElement>) {
 		setLoading(true)
 		setGroupHasPlayed(true)
-		props.groupHasPlayed()
+		// props.groupHasPlayed()
 
 		event.currentTarget.disabled = true
 
@@ -31,7 +31,7 @@ const Group = (props: {group: IGroupType; groupHasPlayed: () => void}) => {
 
 		await matchs.forEach(match => {
 			const isWinner = match.playMatch()
-			if (isWinner) isWinner.points += 3
+			if (isWinner) isWinner.rounds.groups.points += 3
 		})
 
 		await setTimeout(async () => {
@@ -58,23 +58,26 @@ const Group = (props: {group: IGroupType; groupHasPlayed: () => void}) => {
 					) : (
 						props.group.teams
 							.sort((a, b) => {
-								if (groupHasPlayed && b.points === a.points) return b.xp - a.xp
-								return b.points - a.points
+								if (groupHasPlayed && b.rounds.groups.points === a.rounds.groups.points) return b.xp - a.xp
+								return b.rounds.groups.points - a.rounds.groups.points
 							})
 							.map(team => {
 								let isWinner: string = ""
 								if (groupHasPlayed) {
 									if (props.group.teams.indexOf(team) < 2) {
 										isWinner = "true"
-										team.isQualified = true
-									} else isWinner = "false"
+										team.rounds.groups.isQualified = true
+									} else {
+										team.rounds.groups.isQualified = false
+										isWinner = "false"
+									}
 								}
 								return (
 									<TeamRow
 										key={Tools.generateId(team.id)}
 										team={team}
 										isWinner={isWinner}
-										initialPoints={team.points}
+										points={groupHasPlayed ? team.rounds.groups.points : 0}
 									/>
 								)
 							})

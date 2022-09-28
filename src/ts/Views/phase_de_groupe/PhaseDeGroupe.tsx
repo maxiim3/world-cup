@@ -4,6 +4,7 @@ import Loader from "../static/Loader"
 import Group, {IGroupType} from "./Group"
 import NextRoundButton from "../static/NextRoundButton"
 import {Rounds} from "../../App"
+import {ButtonSimulateAll} from "../static/ButtonSimulateAll"
 
 type GroupsType = IGroupType[]
 
@@ -11,20 +12,20 @@ const PhaseDeGroupe = (props: {
 	teams32: TeamModel[]
 	round: Rounds
 	setRound: (state: Rounds) => void
-	setTeams16: (state: TeamModel[]) => void
+/*	setQualified: (state: TeamModel[]) => void*/
 }) => {
 	const [loading, setLoading] = useState(true)
 
-	const [nextBtnIsEnable, setNextBtnIsEnable] = useState<boolean>(false)
-	/**
+/*
+	/!**
 	 * Est Incrémenté à chaque fois qu'un groupe est joué
-	 */
+	 *!/
 	const [countGroupsPlayed, setCountGroupsPlayed] = useState(0)
-
 	useEffect(() => {
 		if (countGroupsPlayed === 8) setNextBtnIsEnable(true)
 		return () => {}
 	}, [countGroupsPlayed, setNextBtnIsEnable])
+*/
 
 	// groupes
 	const [groups, setGroups] = useState<GroupsType>([])
@@ -57,48 +58,32 @@ const PhaseDeGroupe = (props: {
 		}
 	}, [setLoading, props.teams32])
 
-	function handleNextRound() {
+/*	function handleNextRound() {
+		// todo refactor to app.tsx ?
 		setNextBtnIsEnable(false)
-		const qualifiedTeams: TeamModel[] = props.teams32.filter(team => team.isQualified)
-		props.setTeams16(qualifiedTeams)
-
+		const qualifiedTeams: TeamModel[] = props.teams32.filter(team => team.rounds.groups.isQualified)
+		props.setQualified(qualifiedTeams)
 		props.setRound(Rounds.Huitieme)
-	}
+	}*/
 
 	if (loading) return <Loader />
 	else if (groups.length !== 0)
 		return (
 			<section className="round__container">
-				{/**
-				 Add Click on all BTN to simulate all groups at once
-				 */}
-				<button
-					style={{width: 350, height: 65, fontSize: 32, cursor: "pointer"}}
-					onClick={() => {
-						const htmlButtonElements = [
-							...document.querySelectorAll(".btn__simulate-0"),
-						] as HTMLButtonElement[]
-						htmlButtonElements.forEach(btn => {
-							setTimeout(() => {
-								btn.click()
-							}, 850)
-						})
-					}}>
-					Simulate all Groups
-				</button>
+				<ButtonSimulateAll round={Rounds.Group} />
 				<h2 className={"round__title"}>Groups</h2>
 				{groups?.map(group => (
 					<Group
 						key={group.key}
 						group={group}
-						groupHasPlayed={() => setCountGroupsPlayed(countGroupsPlayed + 1)}
+						// groupHasPlayed={() => setCountGroupsPlayed(countGroupsPlayed + 1)}
 					/>
 				))}
-				<NextRoundButton
+{/*				<NextRoundButton
 					nextBtnActive={nextBtnIsEnable}
-					onClick={() => handleNextRound()}>
+					onClick={() => props.handleNextRound()}>
 					Next Round
-				</NextRoundButton>
+				</NextRoundButton>*/}
 			</section>
 		)
 	else return <h2>Houston we have a problem...</h2>

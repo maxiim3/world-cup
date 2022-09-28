@@ -1,32 +1,59 @@
 import {Tools} from "../Tools/Tools"
+
 export type JsonTypeProps = {
 	name: string
 	xp: number
 	flag: string
 }
-export type TeamTypeProps = {
-	name: string
-	xp: number
-	flag: string
+
+type RoundProps = {
+	isQualified: boolean
 	points: number
-	id: string
+}
+type RoundsType = {
+	groups: RoundProps
+	huitieme: RoundProps
+	quart: RoundProps
+	semiFinal: RoundProps
+	final: RoundProps
+	winner: boolean
 }
 
 export class TeamModel {
 	private readonly _name: string
 	private _xp: number
 	private readonly _flag: string
-	points: number
-	isQualified : boolean
+	rounds: RoundsType
 	private readonly _id: string
 
-	constructor(json:JsonTypeProps) {
+	constructor(json: JsonTypeProps) {
 		this._name = json.name
 		this._xp = json.xp
 		this._flag = json.flag
-		this.points = 0
 		this._id = Tools.generateId(this._name) as string
-		this.isQualified = false
+		this.rounds = {
+			groups: {
+				isQualified: false,
+				points: 0,
+			},
+			huitieme: {
+				isQualified: false,
+				points: 0,
+			},
+			quart: {
+				isQualified: false,
+				points: 0,
+			},
+			semiFinal: {
+				isQualified: false,
+				points: 0,
+			},
+			final: {
+				isQualified: false,
+				points: 0,
+			},
+			winner: false,
+		}
 	}
 
 	get id(): string {
