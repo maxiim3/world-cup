@@ -1,45 +1,52 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import {TeamModel} from "../../Models/TeamModel"
 import {Tools} from "../../Tools/Tools"
-import Loader from "../static/Loader"
 import {Match} from "../../Models/MatchModel"
 import {TeamRow} from "../static/TeamRow"
 
-const Group = (props: {group: IGroupType; /*groupHasPlayed: () => void*/}) => {
-	const [loading, setLoading] = useState(false)
-
+const Group = (props: {group: IGroupType}) => {
 	const tBodyId = Tools.generateId("id", "tbody", props.group.key)
 	const buttonID = Tools.generateId("button", props.group.key)
 
 	const [groupHasPlayed, setGroupHasPlayed] = useState(false)
+	const [qualifiedTeams, setQualifiedTeams] = useState<TeamModel[] | null>(null)
+	useEffect(() => {
+		qualifiedTeams?.forEach(team => (team.rounds.groups.isQualified = true))
+	}, [qualifiedTeams])
 
-	async function simulateGroups(event: React.MouseEvent<HTMLButtonElement>) {
-		setLoading(true)
+	const [groupData, setGroupData] = useState<TeamModel[]>(props.group.teams)
+	useEffect(() => {
+		groupData.sort((a, b) => {
+			if (!groupHasPlayed || b.rounds.groups.points === a.rounds.groups.points) return b.xp - a.xp
+			else return b.rounds.groups.points - a.rounds.groups.points
+		})
+		if (groupHasPlayed) {
+			setQualifiedTeams([groupData[0], groupData[1]])
+		}
+	}, [groupData, groupHasPlayed, setGroupData])
+
+	function simulateGroups(event: React.MouseEvent<HTMLButtonElement>) {
+		// setLoading(true)
 		setGroupHasPlayed(true)
-		// props.groupHasPlayed()
-
 		event.currentTarget.disabled = true
-
 		const matchs = [
-			new Match(props.group.teams[0], props.group.teams[1]),
-			new Match(props.group.teams[0], props.group.teams[2]),
-			new Match(props.group.teams[0], props.group.teams[3]),
-			new Match(props.group.teams[1], props.group.teams[2]),
-			new Match(props.group.teams[1], props.group.teams[3]),
-			new Match(props.group.teams[2], props.group.teams[3]),
+			new Match(groupData[0], groupData[1]),
+			new Match(groupData[0], groupData[2]),
+			new Match(groupData[0], groupData[3]),
+			new Match(groupData[1], groupData[2]),
+			new Match(groupData[1], groupData[3]),
+			new Match(groupData[2], groupData[3]),
 		]
 
-		await matchs.forEach(match => {
+		matchs.forEach(match => {
 			const isWinner = match.playMatch()
-			if (isWinner) isWinner.rounds.groups.points += 3
+			console.log(match)
+			if (isWinner) {
+				isWinner.rounds.groups.points += 3
+			}
 		})
-
-		await setTimeout(async () => {
-			setLoading(false)
-		}, 750)
+		props.group.teams = groupData
 	}
-
-	// todo SORT teams after match result | set winner / looser : add prop to TEAMMODEL ? isqulified => true||false so get value of isqualifeied teams for each round, then reset it to false. Or create a isqualified for each round (isQUalForHuitieme, isQUalForQuart etc...) and filter teams
 
 	return (
 		<article>
@@ -53,35 +60,17 @@ const Group = (props: {group: IGroupType; /*groupHasPlayed: () => void*/}) => {
 					</tr>
 				</thead>
 				<tbody id={tBodyId}>
-					{loading ? (
-						<Loader />
-					) : (
-						props.group.teams
-							.sort((a, b) => {
-								if (groupHasPlayed && b.rounds.groups.points === a.rounds.groups.points) return b.xp - a.xp
-								return b.rounds.groups.points - a.rounds.groups.points
-							})
-							.map(team => {
-								let isWinner: string = ""
-								if (groupHasPlayed) {
-									if (props.group.teams.indexOf(team) < 2) {
-										isWinner = "true"
-										team.rounds.groups.isQualified = true
-									} else {
-										team.rounds.groups.isQualified = false
-										isWinner = "false"
-									}
-								}
-								return (
-									<TeamRow
-										key={Tools.generateId(team.id)}
-										team={team}
-										isWinner={isWinner}
-										points={groupHasPlayed ? team.rounds.groups.points : 0}
-									/>
-								)
-							})
-					)}
+					{groupData.map(team => {
+						return (
+							// todo fix add is Qualified
+							<TeamRow
+								key={Tools.generateId(team.id)}
+								team={team}
+								isWinner={team.rounds.groups.isQualified ? team.rounds.groups.isQualified.toString() : ""}
+								points={team.rounds.groups.points}
+							/>
+						)
+					})}
 				</tbody>
 			</table>
 			<button
@@ -96,7 +85,7 @@ const Group = (props: {group: IGroupType; /*groupHasPlayed: () => void*/}) => {
 
 export default Group
 
-export interface IGroupType {
+export type IGroupType = {
 	key: string
 	teams: TeamModel[]
 }

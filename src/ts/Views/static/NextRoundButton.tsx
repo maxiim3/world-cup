@@ -1,6 +1,6 @@
 import React from "react"
 
-const NextRoundButton = (props: {nextBtnActive:boolean, onClick: () => void; children: string}) => {
+const NextRoundButton = (props: {nextBtnActive:boolean, onClick: () => void; children: React.ReactFragment}) => {
 	return (
 		<div className={"component__static-footer"}>
 			<button

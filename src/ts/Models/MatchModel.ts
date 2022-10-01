@@ -20,7 +20,6 @@ export class Match {
 				scores.push(Math.random())
 			}
 			const sum = Math.round(scores.reduce((res, score) => res + score))
-			// const maxScore = Math.round((sum * team.xp / 1000))
 			return Math.round(sum / scores.length)
 		}
 
