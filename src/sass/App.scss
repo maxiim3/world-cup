@@ -1,8 +1,212 @@
+//region import
 @use "reset";
-@use "base";
+@use "base" as base;
+@use "color" as color;
+//endregion
 
-@use "Static/header";
-@use "Static/switchRoundBtn";
+//region mixins
+@mixin useFlex($direction: column) {
+	display: flex;
+	flex-direction: $direction;
+	justify-content: center;
+	align-items: center;
+}
 
-@use "Components/loader";
-@use "Components/groups";
+@mixin useBoxModel() {
+	border-radius: 15px;
+	border: 1px gray solid;
+	padding: 15px 30px;
+}
+
+//endregion
+
+//region base
+body {
+	background-color: color.$primary;
+	color: color.$secondary;
+}
+
+h1 {
+	font-size: 64px;
+	color: color.$beige;
+}
+
+h2 {
+	font-size: 30px;
+	color: color.$teal;
+}
+
+p {
+	font-size: 30px;
+}
+
+.loading {
+	color: color.$valid;
+	//todo loading spinner
+}
+
+.error {
+	color: color.$error;
+	// todo error spinner
+}
+
+#root {
+	@include useFlex;
+	width: 100%;
+	height: 100%;
+	gap: 30px;
+	margin-block: 25px;
+}
+
+//endregion
+
+//region buttons
+button {
+	&.changeRoundBtn {
+		margin-block: 50px 25px;
+		@include useBoxModel;
+		background: color.$salmon;
+
+		&:hover {
+			background: color.$teal;
+		}
+
+		&:disabled {
+			cursor: not-allowed;
+			background: color.$dimmed;
+		}
+	}
+}
+
+//endregion
+
+//region layout
+.app {
+	@include useFlex;
+	gap: 90px;
+	margin-inline: 15px;
+	//region phase de groupe flex
+	&__phaseDeGroupe {
+		@include useFlex;
+		gap: 150px;
+
+		.phase__content {
+			@include useFlex(row);
+			gap: 50px;
+			flex-wrap: wrap;
+		}
+	}
+
+	//endregion
+
+	//region phase finale grid
+	&__phaseFinale {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		grid-template-areas: "huitieme quart demi finale winner";
+		column-gap: 50px;
+
+		.phase__content {
+			@include useFlex(row);
+			gap: 50px;
+			flex-wrap: wrap;
+		}
+
+		.huitieme {
+			grid-area: huitieme;
+			justify-self: center;
+			align-self: start;
+		}
+
+		.quart {
+			grid-area: quart;
+			justify-self: center;
+			align-self: start;
+		}
+
+		.demi {
+			grid-area: demi;
+			justify-self: center;
+			align-self: start;
+		}
+
+		.finale {
+			grid-area: finale;
+			justify-self: center;
+			align-self: start;
+		}
+
+		.winner {
+			grid-area: winner;
+			justify-self: center;
+			align-self: start;
+		}
+	}
+
+	//endregion
+}
+
+//region table
+table {
+	padding: 4px 8px 8px;
+	border-radius: 15px;
+	background: color.$dimmed;
+	box-shadow: 8px 0 16px black;
+	overflow: hidden;
+	user-select: none;
+
+	transition: transform 180ms ease-in-out, scale 180ms ease-in-out;
+	scale: 1;
+
+	&:hover {
+		scale: 1.3;
+	}
+
+	thead {
+		tr {
+			th {
+				font-size: 18px;
+				color: color.$secondary;
+				text-transform: uppercase;
+				padding: 4px 8px;
+			}
+		}
+	}
+
+	tbody {
+		tr {
+			td {
+				font-size: 16px;
+				color: color.$secondary;
+				text-align: center;
+			}
+		}
+	}
+}
+
+//endregion
+
+//endregion
+
+//region component
+.phase {
+	&[data-is-displayed="true"] {
+		@include useFlex;
+		gap: 50px;
+		//todo faire un fadein/out animation
+	}
+
+	&[data-is-displayed="false"] {
+		display: none;
+	}
+
+	&__header {
+		text-align: center;
+		margin-inline: auto;
+	}
+
+	&__content {
+	}
+}
+
+//endregion
