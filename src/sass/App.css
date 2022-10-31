@@ -72,22 +72,22 @@ p {
   margin-block: 25px;
 }
 
-button.changeRoundBtn {
+.changeRoundBtn {
   margin-block: 50px 25px;
   border-radius: 15px;
   border: 1px gray solid;
   padding: 15px 30px;
   background: #f36747;
 }
-button.changeRoundBtn:hover {
+.changeRoundBtn:hover {
   background: #75b7ba;
 }
-button.changeRoundBtn:disabled {
+.changeRoundBtn:disabled {
   cursor: not-allowed;
   background: #444141;
 }
 
-.app {
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -95,14 +95,7 @@ button.changeRoundBtn:disabled {
   gap: 90px;
   margin-inline: 15px;
 }
-.app__phaseDeGroupe {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 150px;
-}
-.app__phaseDeGroupe .phase__content {
+.container__main--groups {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -110,84 +103,27 @@ button.changeRoundBtn:disabled {
   gap: 50px;
   flex-wrap: wrap;
 }
-.app__phaseFinale {
+.container__main--finals {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-areas: "huitieme quart demi finale winner";
   column-gap: 50px;
 }
-.app__phaseFinale .phase__content {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
-  flex-wrap: wrap;
-}
-.app__phaseFinale .huitieme {
-  grid-area: huitieme;
-  justify-self: center;
-  align-self: start;
-}
-.app__phaseFinale .quart {
-  grid-area: quart;
-  justify-self: center;
-  align-self: start;
-}
-.app__phaseFinale .demi {
-  grid-area: demi;
-  justify-self: center;
-  align-self: start;
-}
-.app__phaseFinale .finale {
-  grid-area: finale;
-  justify-self: center;
-  align-self: start;
-}
-.app__phaseFinale .winner {
-  grid-area: winner;
-  justify-self: center;
-  align-self: start;
-}
-
-table {
-  padding: 4px 8px 8px;
-  border-radius: 15px;
-  background: #444141;
-  box-shadow: 8px 0 16px black;
-  overflow: hidden;
-  user-select: none;
-  transition: transform 180ms ease-in-out, scale 180ms ease-in-out;
-  scale: 1;
-}
-table:hover {
-  scale: 1.3;
-}
-table thead tr th {
-  font-size: 18px;
-  color: #faf4e8;
-  text-transform: uppercase;
-  padding: 4px 8px;
-}
-table tbody tr td {
-  font-size: 16px;
-  color: #faf4e8;
-  text-align: center;
-}
-
-.phase[data-is-displayed=true] {
+.container__main--finals .final {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 50px;
+  flex-wrap: wrap;
+  grid-area: auto;
 }
-.phase[data-is-displayed=false] {
-  display: none;
+
+.isPlayed .winner {
+  color: #4acd6f;
 }
-.phase__header {
-  text-align: center;
-  margin-inline: auto;
+.isPlayed .looser {
+  color: #444141;
 }
 
 /*# sourceMappingURL=App.css.map */

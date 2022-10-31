@@ -1,47 +1,47 @@
 export default [
 	{
 		name: "Qatar",
-		xp: 45,
+		xp: 59,
 		flag: "🇶🇦",
 	},
 	{
 		name: "Ecuador",
-		xp: 65,
+		xp: 62,
 		flag: "🇪🇨",
 	},
 	{
 		name: "Senegal",
-		xp: 62,
+		xp: 78,
 		flag: "🇸🇳",
 	},
 	{
 		name: "Netherlands",
-		xp: 82,
+		xp: 85,
 		flag: "🇳🇱",
 	},
 	{
 		name: "England",
-		xp: 86,
+		xp: 88,
 		flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
 	},
 	{
 		name: "Iran",
-		xp: 42,
+		xp: 73,
 		flag: "🇮🇷",
 	},
 	{
 		name: "USA",
-		xp: 59,
+		xp: 78,
 		flag: "🇺🇸",
 	},
 	{
 		name: "Wales",
-		xp: 68,
+		xp: 64,
 		flag: "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
 	},
 	{
 		name: "Argentina",
-		xp: 91,
+		xp: 90,
 		flag: "🇦🇷",
 	},
 	{
@@ -51,62 +51,62 @@ export default [
 	},
 	{
 		name: "Mexico",
-		xp: 71,
+		xp: 80,
 		flag: "🇲🇽",
 	},
 	{
 		name: "Poland",
-		xp: 73,
+		xp: 70,
 		flag: "🇵🇱",
 	},
 	{
 		name: "France",
-		xp: 94,
+		xp: 89,
 		flag: "🇫🇷",
 	},
 	{
 		name: "Australia",
-		xp: 68,
+		xp: 64,
 		flag: "🇦🇺",
 	},
 	{
 		name: "Denmark",
-		xp: 73,
+		xp: 80,
 		flag: "🇩🇰",
 	},
 	{
 		name: "Tunisia",
-		xp: 61,
+		xp: 69,
 		flag: "🇹🇳",
 	},
 	{
 		name: "Spain",
-		xp: 88,
+		xp: 87,
 		flag: "🇪🇸",
 	},
 	{
 		name: "Costa-Rica",
-		xp: 78,
+		xp: 66,
 		flag: "🇨🇷",
 	},
 	{
 		name: "Germany",
-		xp: 90,
+		xp: 84,
 		flag: "🇩🇪",
 	},
 	{
 		name: "Japan",
-		xp: 70,
+		xp: 75,
 		flag: "🇯🇵",
 	},
 	{
 		name: "Belgium",
-		xp: 84,
+		xp: 88,
 		flag: "🇧🇪",
 	},
 	{
 		name: "Canada",
-		xp: 54,
+		xp: 64,
 		flag: "🇨🇦",
 	},
 	{
@@ -116,12 +116,12 @@ export default [
 	},
 	{
 		name: "Croatia",
-		xp: 82,
+		xp: 84,
 		flag: "🇭🇷",
 	},
 	{
 		name: "Brazil",
-		xp: 90,
+		xp: 92,
 		flag: "🇧🇷",
 	},
 	{
@@ -131,17 +131,17 @@ export default [
 	},
 	{
 		name: "Switzerland",
-		xp: 78,
+		xp: 75,
 		flag: "🇨🇭",
 	},
 	{
 		name: "Cameroun",
-		xp: 73,
+		xp: 64,
 		flag: "🇨🇲",
 	},
 	{
 		name: "Portugal",
-		xp: 85,
+		xp: 84,
 		flag: "🇵🇹",
 	},
 	{
@@ -151,12 +151,12 @@ export default [
 	},
 	{
 		name: "Uruguay",
-		xp: 71,
+		xp: 82,
 		flag: "🇺🇾",
 	},
 	{
 		name: "South-Korea",
-		xp: 72,
+		xp: 70,
 		flag: "🇰🇷",
 	},
 ]

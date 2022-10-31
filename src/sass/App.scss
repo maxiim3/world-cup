@@ -61,151 +61,57 @@ p {
 //endregion
 
 //region buttons
-button {
-	&.changeRoundBtn {
-		margin-block: 50px 25px;
-		@include useBoxModel;
-		background: color.$salmon;
+.changeRoundBtn {
+	margin-block: 50px 25px;
+	@include useBoxModel;
+	background: color.$salmon;
 
-		&:hover {
-			background: color.$teal;
-		}
+	&:hover {
+		background: color.$teal;
+	}
 
-		&:disabled {
-			cursor: not-allowed;
-			background: color.$dimmed;
-		}
+	&:disabled {
+		cursor: not-allowed;
+		background: color.$dimmed;
 	}
 }
 
 //endregion
 
-//region layout
-.app {
-	@include useFlex;
+//region Containers
+.container {
+	@include useFlex(column);
 	gap: 90px;
 	margin-inline: 15px;
-	//region phase de groupe flex
-	&__phaseDeGroupe {
-		@include useFlex;
-		gap: 150px;
 
-		.phase__content {
-			@include useFlex(row);
-			gap: 50px;
-			flex-wrap: wrap;
-		}
+	&__main--groups {
+		@include useFlex(row);
+		gap: 50px;
+		flex-wrap: wrap;
 	}
 
-	//endregion
-
-	//region phase finale grid
-	&__phaseFinale {
+	&__main--finals {
 		display: grid;
 		grid-template-columns: repeat(5, 1fr);
 		grid-template-areas: "huitieme quart demi finale winner";
 		column-gap: 50px;
 
-		.phase__content {
-			@include useFlex(row);
+		.final {
+			@include useFlex;
 			gap: 50px;
 			flex-wrap: wrap;
-		}
-
-		.huitieme {
-			grid-area: huitieme;
-			justify-self: center;
-			align-self: start;
-		}
-
-		.quart {
-			grid-area: quart;
-			justify-self: center;
-			align-self: start;
-		}
-
-		.demi {
-			grid-area: demi;
-			justify-self: center;
-			align-self: start;
-		}
-
-		.finale {
-			grid-area: finale;
-			justify-self: center;
-			align-self: start;
-		}
-
-		.winner {
-			grid-area: winner;
-			justify-self: center;
-			align-self: start;
-		}
-	}
-
-	//endregion
-}
-
-//region table
-table {
-	padding: 4px 8px 8px;
-	border-radius: 15px;
-	background: color.$dimmed;
-	box-shadow: 8px 0 16px black;
-	overflow: hidden;
-	user-select: none;
-
-	transition: transform 180ms ease-in-out, scale 180ms ease-in-out;
-	scale: 1;
-
-	&:hover {
-		scale: 1.3;
-	}
-
-	thead {
-		tr {
-			th {
-				font-size: 18px;
-				color: color.$secondary;
-				text-transform: uppercase;
-				padding: 4px 8px;
-			}
-		}
-	}
-
-	tbody {
-		tr {
-			td {
-				font-size: 16px;
-				color: color.$secondary;
-				text-align: center;
-			}
+			grid-area: auto;
 		}
 	}
 }
 
-//endregion
-
-//endregion
-
-//region component
-.phase {
-	&[data-is-displayed="true"] {
-		@include useFlex;
-		gap: 50px;
-		//todo faire un fadein/out animation
+.isPlayed {
+	.winner {
+		color: color.$valid;
 	}
 
-	&[data-is-displayed="false"] {
-		display: none;
-	}
-
-	&__header {
-		text-align: center;
-		margin-inline: auto;
-	}
-
-	&__content {
+	.looser {
+		color: color.$dimmed;
 	}
 }
 

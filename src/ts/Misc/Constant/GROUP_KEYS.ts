@@ -1,0 +1,1 @@
+export const GROUP_KEYS = ["group_A", "group_B", "group_C", "group_D", "group_E", "group_F", "group_G", "group_H"]

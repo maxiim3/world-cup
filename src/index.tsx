@@ -12,8 +12,15 @@ $link.referrerPolicy = "no-referrer"
 document.head.append($link)
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
-
-localStorage.clear()
+;(() => localStorage.clear())()
+;(function () {
+	localStorage.setItem("groups", "")
+	localStorage.setItem("eighthFinal", "")
+	localStorage.setItem("quarterFinal", "")
+	localStorage.setItem("semiFinal", "")
+	localStorage.setItem("final", "")
+	localStorage.setItem("winner", "")
+})()
 
 root.render(
 	<React.StrictMode>

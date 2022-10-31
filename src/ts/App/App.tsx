@@ -1,35 +1,67 @@
 import React, {useEffect, useState} from "react"
-import {APP_STATE} from "../Constant/APP_STATE"
-import {Rounds} from "./Rounds"
+import ContainerLayout from "../Layouts/ContainerLayout"
+import {fetchTeams} from "../Misc/Utils/FetchTeams"
+import {TeamModel} from "../Classes/TeamModel"
+import {StatusEnum} from "../Misc/Enums/StatusEnum"
+import {Finals} from "./FinalsContainer"
+import {GroupsContainer} from "./GroupsContainer"
+import {APP_STATE} from "../Misc/Constant/APP_STATE"
 
 export function App() {
-	const [appState] = useState(APP_STATE.ok)
+	const [appState, setAppState] = useState(APP_STATE.loading)
+
+	const [Teams, setTeams] = useState<TeamModel[]>()
 	useEffect(() => {
-		localStorage.appStatusIndex = JSON.stringify({
-			index: appState.index,
-			status: appState.label,
-		})
-	}, [appState])
+		return () => {
+			const teams = fetchTeams()
+			setTeams(teams)
+			setAppState(APP_STATE.ok)
+		}
+	}, [])
 
-	if (appState === APP_STATE.loading)
+	const [GroupeStageStatus, setGroupeStageStatus] = useState(StatusEnum.online)
+
+	if (appState === APP_STATE.error) return <h1 className={"error"}>ERROR 404</h1>
+
+	if (Teams && appState === APP_STATE.ok) {
+		// console.table(Teams) // debug
 		return (
 			<>
-				<h1>LOADING</h1>
-				<section className={"loading"}></section>
-			</>
-		)
-	if (appState === APP_STATE.error)
-		return (
-			<>
-				<h1>404</h1>
-				<section className={"error"}></section>
-			</>
-		)
+				<h1 className={"competition__title"}>World Cup 2022</h1>
 
-	return (
-		<>
-			<h1>World Cup 2022</h1>
-			<Rounds />
-		</>
-	)
+				{(function () {
+					switch (GroupeStageStatus) {
+						case StatusEnum.offline:
+							return
+						case StatusEnum.loading:
+							return (
+								<ContainerLayout title={"Phases De Groupe"}>
+									<h2>LOADING</h2>
+								</ContainerLayout>
+							)
+						default:
+							return (
+									<GroupsContainer
+										teams={Teams}
+										updateStatus={(status: StatusEnum) => setGroupeStageStatus(status)}
+									/>
+							)
+					}
+				})()}
+
+				{(function () {
+					if (GroupeStageStatus !== StatusEnum.archived) return
+					else {
+						return (
+							<ContainerLayout title={"Phases Finales"}>
+								<Finals />
+							</ContainerLayout>
+						)
+					}
+				})()}
+			</>
+		)
+	}
+	// console.log("loading") // debug
+	return <h1 className={"loading"}>ERROR 404</h1>
 }
