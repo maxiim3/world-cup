@@ -1,4 +1,4 @@
-import Teams from "../../../Mock/Teams"
+import {Teams} from "../../../Mock/Teams"
 import {TeamModel} from "../../Classes/TeamModel"
 
 export function fetchTeams(): TeamModel[] {
@@ -6,7 +6,7 @@ export function fetchTeams(): TeamModel[] {
 		return new TeamModel(team, "")
 	})
 
-	teams.map(team => {
+	teams.forEach(team => {
 		if (team.id === "qata" || team.id === "ecua" || team.id === "sene" || team.id === "neth") team.group = "A"
 		if (team.id === "engl" || team.id === "iran" || team.id === "usa" || team.id === "wale") team.group = "B"
 		if (team.id === "arge" || team.id === "saud" || team.id === "mexi" || team.id === "pola") team.group = "C"

@@ -25,19 +25,19 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 	localStorage.setItem("winner", "")
 })()
 
-const clickOnLoad = async () => {
-	const load = async (ms: number) => {
-		await Tools.Pause(ms)
-		const btn: HTMLButtonElement = document.querySelector(
-			'.changeRoundBtn:not([data-disabled ="true"])'
-		) as HTMLButtonElement
-		btn && btn.click()
-	}
-
-	for (let i = 0; i < 10; i++) {
-		await load(350)
-	}
-}
+// const clickOnLoad = async () => {
+// 	const load = async (ms: number) => {
+// 		await Tools.Pause(ms)
+// 		const btn: HTMLButtonElement = document.querySelector(
+// 			'.changeRoundBtn:not([data-disabled ="true"])'
+// 		) as HTMLButtonElement
+// 		btn && btn.click()
+// 	}
+//
+// 	for (let i = 0; i < 10; i++) {
+// 		await load(350)
+// 	}
+// }
 
 
 
@@ -48,4 +48,4 @@ root.render(
 	</React.StrictMode>
 )
 
-clickOnLoad().catch()
+// clickOnLoad().catch()

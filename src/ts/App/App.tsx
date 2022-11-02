@@ -8,7 +8,7 @@ import {GroupsContainer} from "./GroupsContainer"
 import {APP_STATE} from "../Misc/Constant/APP_STATE"
 
 export function App() {
-	const [appState, setAppState] = useState(APP_STATE.loading)
+	const [appState, setAppState] = useState(APP_STATE.ok)
 
 	const [Teams, setTeams] = useState<TeamModel[]>()
 	useEffect(() => {
@@ -21,10 +21,12 @@ export function App() {
 
 	const [GroupeStageStatus, setGroupeStageStatus] = useState(StatusEnum.online)
 
-	if (appState === APP_STATE.error) return <h1 className={"error"}>ERROR 404</h1>
-
+	if (appState === APP_STATE.error) {
+		console.table(Teams) // debug
+		return <h1 className={"error"}>ERROR 404</h1>
+	}
 	if (Teams && appState === APP_STATE.ok) {
-		// console.table(Teams) // debug
+		console.table(Teams) // debug
 		return (
 			<>
 				<h1 className={"competition__title"}>World Cup 2022</h1>
@@ -62,6 +64,6 @@ export function App() {
 			</>
 		)
 	}
-	// console.log("loading") // debug
-	return <h1 className={"loading"}>ERROR 404</h1>
+	console.log("loading", Teams, appState) // debug
+	return <h1 className={"loading"}>Loading....</h1>
 }

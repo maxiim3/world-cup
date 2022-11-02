@@ -1,4 +1,4 @@
-export default [
+export const Teams = [
 	{
 		name: "Qatar",
 		xp: 59,

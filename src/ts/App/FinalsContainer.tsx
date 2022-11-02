@@ -20,9 +20,6 @@ export function Finals() {
 	// Final
 	const [FinalStageStatus, setFinalStageStatus] = useState(StatusEnum.offline)
 
-	// Winner
-	const [WinnerStatus, setWinnerStatus] = useState(StatusEnum.offline)
-
 	if (EighthStageStatus === StatusEnum.loading) return <h3>LOADING</h3>
 	if (EighthStageStatus === StatusEnum.offline) return <h3>Error</h3>
 	else
