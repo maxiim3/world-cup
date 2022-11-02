@@ -6,8 +6,7 @@ const usePlayMatch = (matches : TeamModel[][], updateIsPlayed:Function) => {
 	function handlePlayMatch() {
 		const output: TeamModel[][] = matches.map(match => {
 			const matchClass = new MatchModel(match)
-			const result = matchClass.play()
-			return result
+			return matchClass.runEliminationMatch()
 		})
 		updateIsPlayed()
 		return output
@@ -16,5 +15,4 @@ const usePlayMatch = (matches : TeamModel[][], updateIsPlayed:Function) => {
 	return {handlePlayMatch}
 }
 
-export type PlayMatchProps = {}
 export default usePlayMatch

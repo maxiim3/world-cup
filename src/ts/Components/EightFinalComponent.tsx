@@ -13,11 +13,11 @@ export function EightFinalComponent({updateStatus}: {updateStatus: Function}) {
 	// Visual feedback for winners
 	const {isPlayed, updateIsPlayed} = useIsPlayed(false)
 
-	// Matches for the 8th final
+	// Matches for the 8th final //todo refactor to custom hook
 	let [matches, setMatches] = useState<TeamModel[][]>([])
 	useEffect(() => {
-		return () => {
 			localStorage.eighthFinal = JSON.stringify(matches)
+		return () => {
 		}
 	}, [matches])
 

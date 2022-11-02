@@ -9,7 +9,7 @@ export type FinalsProps = {
 export function CardLayout({title, children, label = "final"}: FinalsProps) {
 	return (
 		<section
-			className={label}
+			className={"card__content card__content--" + label}
 			id={label}>
 			<h3>{title}</h3>
 			{children}

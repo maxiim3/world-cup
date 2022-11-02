@@ -13,12 +13,11 @@ export function QuarterFinalComponent({updateStatus}: {updateStatus: Function}) 
 	// Visual feedback for winners
 	const {isPlayed, updateIsPlayed} = useIsPlayed(false)
 
-	// Matches for the 4th final
+	// Matches for the 4th final //  todo refactor to custom hook
 	let [matches, setMatches] = useState<TeamModel[][]>([])
 	useEffect(() => {
-		return () => {
-			localStorage.quarterFinal = JSON.stringify(matches)
-		}
+		localStorage.quarterFinal = JSON.stringify(matches)
+		return () => {}
 	}, [matches])
 
 	useFetchFromLocalStorage(setMatches, QuarterFinalModel)
@@ -32,7 +31,9 @@ export function QuarterFinalComponent({updateStatus}: {updateStatus: Function}) 
 				handlePlayMatch={() => setMatches(handlePlayMatch())}
 				updateStatus={updateStatus}
 			/>
-			<CardLayout title={"Quarter Final"}>
+			<CardLayout
+				title={"Quarter Final"}
+				label={"quarterFinal"}>
 				{matches.map(match => (
 					<MatchTableTemplate
 						teams={match}

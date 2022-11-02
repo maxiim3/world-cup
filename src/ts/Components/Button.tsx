@@ -20,12 +20,12 @@ export function Button({handlePlayMatch, updateStatus} :ButtonProps) {
 	const [buttonState, setButtonState] = useState(0)
 	useEffect(() => {
 		if (buttonState === 1) {
-			console.log("%cPlay MatchModel", "color: tomato")
+			// console.log("%cPlay MatchModel", "color: tomato")
 			handlePlayMatch()
 			setButtonInnerText("Go to next round")
 		}
 		if (buttonState >= 2) {
-			console.log("%cChange Stage", "color:green")
+			// console.log("%cChange Stage", "color:green")
 			setButtonIsDisabled(true)
 			if (localStorage.groups) {
 				return updateStatus(StatusEnum.archived)
@@ -36,6 +36,7 @@ export function Button({handlePlayMatch, updateStatus} :ButtonProps) {
 	return (
 		<button
 			className={"changeRoundBtn"}
+			data-disabled = {buttonIsDisabled}
 			disabled={buttonIsDisabled}
 			onClick={() => setButtonState(buttonState + 1)}>
 			{buttonInnerText}

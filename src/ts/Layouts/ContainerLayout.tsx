@@ -13,7 +13,7 @@ export default function ContainerLayout({
 			<header className={"container__header"}>
 				<h2>{title}</h2>
 			</header>
-			<main className={"container__main container__main--finals"}>{children}</main>
+			<article className={"container__main container__main--groups"}>{children}</article>
 		</section>
 	)
 }

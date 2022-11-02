@@ -1,7 +1,7 @@
 import {useState} from "react"
 
 /**
- *
+ * @description Update is played value to give a visual feedback on the UI
  * @param {boolean} initialValue
  * @return IsPlayedProps
  */

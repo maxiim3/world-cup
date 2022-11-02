@@ -13,7 +13,7 @@ export function TableLayout({
 	return (
 		<table className={isPlayed ? "isPlayed" : "null"}>
 			<TableHeaderLayout label={label} />
-			<tbody>{children}</tbody>
+			<tbody className={"tbody"}>{children}</tbody>
 		</table>
 	)
 }

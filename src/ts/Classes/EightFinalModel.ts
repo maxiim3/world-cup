@@ -5,14 +5,14 @@ import {LocalStorageModel} from "./LocalStorageModel"
 import {Tools} from "../Misc/Utils/Tools"
 import {StageModel} from "../Misc/Interfaces/StageModel"
 
-export class EightFinalModel implements StageModel{
+export class EightFinalModel implements StageModel {
 	private teams: TeamModel[][]
 	private readonly fetchedTeams: LocalStorageDataProps[]
 
 	constructor() {
 		this.teams = []
 		const api = new LocalStorageModel("groups")
-		this.fetchedTeams = api.fetchData()
+		this.fetchedTeams = this.resetTeams(api.fetchData())
 	}
 
 	init() {
@@ -20,6 +20,11 @@ export class EightFinalModel implements StageModel{
 		this.pushToLocalStorage(this.teams)
 
 		return this.teams
+	}
+
+	private resetTeams(data: LocalStorageDataProps[]) {
+		data.forEach((data: LocalStorageDataProps) => data?.teams?.forEach(team => (team.score = 0)))
+		return data
 	}
 
 	private findTeams(firstGroup: number, secondGroup: number) {

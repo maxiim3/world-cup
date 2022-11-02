@@ -3,13 +3,13 @@ import {LocalStorageModel} from "./LocalStorageModel"
 import {StageModel} from "../Misc/Interfaces/StageModel"
 import {Tools} from "../Misc/Utils/Tools"
 
-export class QuarterFinalModel implements StageModel {
+export class SemiFinalModel implements StageModel {
 	private teams: TeamModel[][]
 	private readonly fetchedTeams: TeamModel[][]
 
 	constructor() {
 		this.teams = []
-		const api = new LocalStorageModel("eighthFinal")
+		const api = new LocalStorageModel("quarterFinal")
 		this.fetchedTeams = api.fetchData()
 	}
 
@@ -36,16 +36,14 @@ export class QuarterFinalModel implements StageModel {
 			: [Tools.generateFakeTeam(), Tools.generateFakeTeam()]
 	}
 
-	private mapTeams(): [TeamModel[], TeamModel[], TeamModel[], TeamModel[]] {
+	private mapTeams(): [TeamModel[], TeamModel[]] {
 		const first = this.findTeams(0, 1)
 		const second = this.findTeams(2, 3)
-		const third = this.findTeams(4, 5)
-		const fourth = this.findTeams(6, 7)
 
-		return [first, second, third, fourth]
+		return [first, second]
 	}
 
 	private pushToLocalStorage(teams: TeamModel[][]) {
-		return (localStorage.quarterFinal = JSON.stringify(teams))
+		return (localStorage.semiFinal = JSON.stringify(teams))
 	}
 }

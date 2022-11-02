@@ -42,7 +42,7 @@ export class Tools {
 		)
 	}
 
-	static generateFakeTeam() {
-		return new TeamModel({name: "__", flag: "", xp: 0}, "")
+	static generateFakeTeam() : TeamModel {
+		return new TeamModel({name: "__", flag: "", xp: 0, skills:{attack:0, stamina:0, defense:0, mood:0}}, "")
 	}
 }

@@ -4,6 +4,7 @@ import {Tools} from "../Misc/Utils/Tools"
 import {Button} from "../Components/Button"
 import ContainerLayout from "../Layouts/ContainerLayout"
 import {Group} from "../Components/Group"
+import {MatchModel} from "../Classes/MatchModel"
 
 export function GroupsContainer({teams, updateStatus}: {teams: TeamModel[]; updateStatus: Function}) {
 	const mapGroups = [
@@ -27,34 +28,22 @@ export function GroupsContainer({teams, updateStatus}: {teams: TeamModel[]; upda
 	}, [groups, teams, updateStatus])
 
 	function handlePlayMatch() {
-		const updatedGroups = groups.map(group => {
-			for (let i = 0; i < group.teams.length; i++) {
-				const host = group.teams[i]
-				for (let j = i + 1; j < group.teams.length; j++) {
-					if (i !== j) {
-						const guest = group.teams[j]
-						const hostScore = Tools.GenerateRandomGoals(host)
-						const guestScore = Tools.GenerateRandomGoals(guest)
-						if (hostScore === guestScore) {
-							host.score += 1
-							guest.score += 1
-						}
-						else if (hostScore > guestScore) {
-							host.score += 3
-							host.xp += 3
-							guest.xp -= 2
-						}
-						else if (hostScore < guestScore) {
-							guest.score += 3
-							guest.xp += 3
-							host.xp -= 2
-						}
-					}
-				}
-			}
-			return group
+		return groups.map(group => {
+			const {teams, label} = group
+			const firstMatch = new MatchModel([teams[0], teams[1]])
+			const secondMatch = new MatchModel([teams[2], teams[3]])
+			const thirdMatch = new MatchModel([teams[0], teams[2]])
+			const fourthMatch = new MatchModel([teams[1], teams[3]])
+			const fifthMatch = new MatchModel([teams[0], teams[3]])
+			const sixthMatch = new MatchModel([teams[1], teams[2]])
+			firstMatch.runGroupMatch()
+			secondMatch.runGroupMatch()
+			thirdMatch.runGroupMatch()
+			fourthMatch.runGroupMatch()
+			fifthMatch.runGroupMatch()
+			sixthMatch.runGroupMatch()
+			return {teams, label}
 		})
-		return updatedGroups
 	}
 
 	//RENDER

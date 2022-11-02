@@ -83,6 +83,7 @@ p {
 	@include useFlex(column);
 	gap: 90px;
 	margin-inline: 15px;
+	padding-left: 50px;
 
 	&__main--groups {
 		@include useFlex(row);
@@ -106,13 +107,89 @@ p {
 }
 
 .isPlayed {
+	td {
+		//color: color.$salmon;
+	}
+
 	.winner {
-		color: color.$valid;
+		//color: color.$valid;
+		font-weight: bold;
 	}
 
 	.looser {
-		color: color.$dimmed;
+		//color: color.$dimmed;
+		opacity: 0.5;
 	}
+}
+
+table {
+	margin: 15px 5px;
+}
+
+.th {
+	th {
+		padding: 2px 5px;
+		color: color.$teal;
+	}
+
+	&__name {
+	}
+
+	&__flag {
+	}
+
+	&__label {
+	}
+
+	&__xp {
+	}
+
+	&__attack {
+	}
+
+	&__defense {
+	}
+
+	&__stamina {
+	}
+
+	&__mood {
+	}
+}
+
+.tbody {
+	td {
+		padding: 2px 5px;
+		text-align: center;
+	}
+
+	&__name {
+	}
+
+	&__flag {
+	}
+
+	&__label {
+	}
+
+	&__xp {
+	}
+
+	&__attack {
+	}
+
+	&__defense {
+	}
+
+	&__stamina {
+	}
+
+	&__mood {
+	}
+}
+
+.card__content {
+	@include useBoxModel;
 }
 
 //endregion

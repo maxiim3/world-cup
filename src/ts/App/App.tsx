@@ -41,10 +41,10 @@ export function App() {
 							)
 						default:
 							return (
-									<GroupsContainer
-										teams={Teams}
-										updateStatus={(status: StatusEnum) => setGroupeStageStatus(status)}
-									/>
+								<GroupsContainer
+									teams={Teams}
+									updateStatus={(status: StatusEnum) => setGroupeStageStatus(status)}
+								/>
 							)
 					}
 				})()}

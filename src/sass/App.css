@@ -13,7 +13,6 @@ li {
 }
 
 html {
-  font-size: 62.5%;
   font-family: sans-serif;
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
@@ -94,6 +93,7 @@ p {
   align-items: center;
   gap: 90px;
   margin-inline: 15px;
+  padding-left: 50px;
 }
 .container__main--groups {
   display: flex;
@@ -120,10 +120,28 @@ p {
 }
 
 .isPlayed .winner {
-  color: #4acd6f;
+  font-weight: bold;
 }
 .isPlayed .looser {
-  color: #444141;
+  opacity: 0.5;
+}
+
+table {
+  margin: 15px 5px;
+}
+
+.th th {
+  padding: 2px 5px;
+  color: #75b7ba;
+}
+.tbody td {
+  padding: 2px 5px;
+  text-align: center;
+}
+.card__content {
+  border-radius: 15px;
+  border: 1px gray solid;
+  padding: 15px 30px;
 }
 
 /*# sourceMappingURL=App.css.map */

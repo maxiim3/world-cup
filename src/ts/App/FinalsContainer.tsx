@@ -3,6 +3,9 @@ import {StatusEnum} from "../Misc/Enums/StatusEnum"
 import ContainerLayout from "../Layouts/ContainerLayout"
 import {EightFinalComponent} from "../Components/EightFinalComponent"
 import {QuarterFinalComponent} from "../Components/QuarterFinalComponent"
+import {SemiFinalComponent} from "../Components/SemiFinalComponent"
+import {FinalComponent} from "../Components/FinalComponent"
+import {WinnerComponent} from "../Components/WinnerComponent"
 
 export function Finals() {
 	// Eight final
@@ -31,32 +34,11 @@ export function Finals() {
 					{EighthStageStatus === StatusEnum.archived && (
 						<QuarterFinalComponent updateStatus={setQuarterStageStatus} />
 					)}
-
-					{/*{(function() {*/}
-					{/*	if (QuarterStageStatus !== StatusEnum.archived) return*/}
-					{/*	else {*/}
-					{/*		return (*/}
-					{/*			<SemiFinalComponent*/}
-					{/*				updateStatus={(status: StatusEnum) => setQuarterStageStatus(status)}*/}
-					{/*			/>*/}
-					{/*		)*/}
-					{/*	}*/}
-					{/*})()}*/}
-
-					{/*{(function() {*/}
-					{/*	if (SemiStageStatus !== StatusEnum.archived) return*/}
-					{/*	else {*/}
-					{/*		return <FinalComponent*/}
-					{/*			updateStatus={(status: StatusEnum) => setQuarterStageStatus(status)} />*/}
-					{/*	}*/}
-					{/*})()}*/}
-
-					{/*{(function() {*/}
-					{/*	if (FinalStageStatus !== StatusEnum.archived) return*/}
-					{/*	else {*/}
-					{/*		return <WinnerComponent />*/}
-					{/*	}*/}
-					{/*})()}*/}
+					{QuarterStageStatus === StatusEnum.archived && (
+						<SemiFinalComponent updateStatus={setSemiStageStatus} />
+					)}
+					{SemiStageStatus === StatusEnum.archived && <FinalComponent updateStatus={setFinalStageStatus} />}
+					{FinalStageStatus === StatusEnum.archived && <WinnerComponent />}
 				</ContainerLayout>
 			</>
 		)
