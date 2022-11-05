@@ -30,8 +30,72 @@ a:hover {
   cursor: pointer;
 }
 
-h1 {
-  font-family: "El Messiri", sans-serif;
+body {
+  color: #EEEEE5;
+  background-color: #201f1f;
+}
+
+.loading {
+  color: #4acd6f;
+}
+
+.error {
+  color: #fe0c08;
+}
+
+#header__root {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  color: #EEEEE5;
+  background-color: #444141;
+  padding-block: 45vw;
+}
+
+#main__root {
+  display: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 30px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+th,
+button,
+p,
+a,
+li,
+td {
+  z-index: 500;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+th,
+button {
+  font-family: "Yeseva One", cursive;
+}
+
+p,
+a,
+li,
+td {
+  font-family: "Lora", serif;
 }
 
 h1 {
@@ -50,33 +114,34 @@ h4 {
   font-size: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
 }
 
-p, a, li, td, th, button {
+p,
+a,
+li,
+td,
+th,
+button {
   font-size: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
 }
 
-body {
-  color: #faf4e8;
-  background-color: #201f1f;
+#ballIcon {
+  position: absolute;
+  z-index: 1;
+  top: 10vh;
+  left: -30vw;
+  width: min(50vh, 760px);
+  animation: rotateInfinite 35s linear infinite;
+  opacity: 0.4;
+  fill: #201f1f;
 }
 
-.loading {
-  color: #4acd6f;
+@keyframes rotateInfinite {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
 }
-
-.error {
-  color: #fe0c08;
-}
-
-#root {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  gap: 30px;
-}
-
 .changeRoundBtn {
   padding: 15px 30px;
   border-radius: 15px;
@@ -143,6 +208,47 @@ table {
   padding: 15px 30px;
   border-radius: 15px;
   border: 1px gray solid;
+}
+.card__content--group {
+  width: min(90vw, 550px);
+  height: 15rem;
+  transition: height 550ms ease-in-out;
+  color: #7E2339;
+  background: #EEEEE5;
+}
+.card__content--group header {
+  display: flex;
+  justify-content: space-between;
+}
+.card__content--group main {
+  position: relative;
+  overflow: hidden;
+}
+.card__content--group[data-visible=false] {
+  height: 5rem;
+}
+.card__content--group[data-visible=false] table {
+  animation: slideOut 550ms ease-in-out both;
+}
+.card__content--group table {
+  animation: slideIn 550ms both ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    translate: 0 -200px;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+@keyframes slideOut {
+  from {
+    translate: 0;
+  }
+  to {
+    translate: 0 -200px;
+  }
 }
 
 /*# sourceMappingURL=App.css.map */

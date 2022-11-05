@@ -76,6 +76,7 @@ export function GroupsContainer({teams, updateStatus}: {teams: TeamModel[]; upda
 				{groups.map(group => (
 					<Group
 						key={Tools.generateId(`${groups.indexOf(group)}`)}
+						groupLabel={group.label.split("_")[1]}
 						teams={groups[groups.indexOf(group)].teams}
 					/>
 				))}

@@ -5,11 +5,11 @@ import {TableRowLayout} from "../Layouts/TableRowLayout"
 import {CardLayout} from "../Layouts/CardLayout"
 import {TableLayout} from "../Layouts/TableLayout"
 
-export function Group({teams}: {teams: TeamModel[]}) {
+export function Group({teams, groupLabel}: {teams: TeamModel[], groupLabel: string}) {
 	return (
 		<CardLayout
 			label={"group"}
-			title={"Group"}>
+			title={"Group " + groupLabel}>
 			<TableLayout label={"POINTS"}>
 				{teams
 					.sort((a, b) => b.score - a.score)
