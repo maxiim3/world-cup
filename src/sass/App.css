@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=El+Messiri:wght@700&family=Yeseva+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Nunito:wght@300;400;500&family=Poppins:wght@300;400;500&display=swap");
 *,
 *:before,
 *:after {
@@ -28,28 +30,33 @@ a:hover {
   cursor: pointer;
 }
 
-p {
-  font-size: 40px;
-  margin-bottom: 12px;
-}
-
-body {
-  background-color: #201f1f;
-  color: #faf4e8;
+h1 {
+  font-family: "El Messiri", sans-serif;
 }
 
 h1 {
-  font-size: 64px;
-  color: #dccc9f;
+  font-size: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
 }
 
 h2 {
-  font-size: 30px;
-  color: #75b7ba;
+  font-size: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
 }
 
-p {
-  font-size: 30px;
+h3 {
+  font-size: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
+}
+
+h4 {
+  font-size: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
+}
+
+p, a, li, td, th, button {
+  font-size: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+}
+
+body {
+  color: #faf4e8;
+  background-color: #201f1f;
 }
 
 .loading {
@@ -63,19 +70,17 @@ p {
 #root {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   gap: 30px;
-  margin-block: 25px;
 }
 
 .changeRoundBtn {
-  margin-block: 50px 25px;
+  padding: 15px 30px;
   border-radius: 15px;
   border: 1px gray solid;
-  padding: 15px 30px;
   background: #f36747;
 }
 .changeRoundBtn:hover {
@@ -89,33 +94,29 @@ p {
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   gap: 90px;
-  margin-inline: 15px;
-  padding-left: 50px;
 }
 .container__main--groups {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
-  gap: 50px;
+  justify-content: center;
   flex-wrap: wrap;
 }
 .container__main--finals {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-areas: "huitieme quart demi finale winner";
-  column-gap: 50px;
 }
 .container__main--finals .final {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 50px;
+  justify-content: center;
   flex-wrap: wrap;
+  gap: 50px;
   grid-area: auto;
 }
 
@@ -139,9 +140,9 @@ table {
   text-align: center;
 }
 .card__content {
+  padding: 15px 30px;
   border-radius: 15px;
   border: 1px gray solid;
-  padding: 15px 30px;
 }
 
 /*# sourceMappingURL=App.css.map */

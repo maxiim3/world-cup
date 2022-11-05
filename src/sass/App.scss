@@ -2,194 +2,181 @@
 @use "reset";
 @use "base" as base;
 @use "color" as color;
+@use "font" as f;
 //endregion
 
 //region mixins
+
 @mixin useFlex($direction: column) {
-	display: flex;
-	flex-direction: $direction;
-	justify-content: center;
-	align-items: center;
-}
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: center;
+  }
 
 @mixin useBoxModel() {
-	border-radius: 15px;
-	border: 1px gray solid;
-	padding: 15px 30px;
-}
+  padding: 15px 30px;
+  border-radius: 15px;  border: 1px gray solid;
+  }
 
 //endregion
 
 //region base
 body {
-	background-color: color.$primary;
-	color: color.$secondary;
-}
-
-h1 {
-	font-size: 64px;
-	color: color.$beige;
-}
-
-h2 {
-	font-size: 30px;
-	color: color.$teal;
-}
-
-p {
-	font-size: 30px;
-}
+  color: color.$secondary;
+  background-color: color.$primary;
+  }
 
 .loading {
-	color: color.$valid;
-	//todo loading spinner
-}
+  color: color.$valid;
+  //todo loading spinner
+  }
 
 .error {
-	color: color.$error;
-	// todo error spinner
-}
+  color: color.$error;
+  // todo error spinner
+  }
 
 #root {
-	@include useFlex;
-	width: 100%;
-	height: 100%;
-	gap: 30px;
-	margin-block: 25px;
-}
+  @include useFlex;
+  width: 100%;
+  height: 100%;
+  gap: 30px;
+  //margin-block: 25px;
+  }
 
 //endregion
 
 //region buttons
 .changeRoundBtn {
-	margin-block: 50px 25px;
-	@include useBoxModel;
-	background: color.$salmon;
+  //margin-block: 50px 25px;
+  @include useBoxModel;
+  background: color.$salmon;
 
-	&:hover {
-		background: color.$teal;
-	}
+  &:hover {
+    background: color.$teal;
+    }
 
-	&:disabled {
-		cursor: not-allowed;
-		background: color.$dimmed;
-	}
-}
+  &:disabled {
+    cursor: not-allowed;
+    background: color.$dimmed;
+    }
+  }
 
 //endregion
 
 //region Containers
 .container {
-	@include useFlex(column);
-	gap: 90px;
-	margin-inline: 15px;
-	padding-left: 50px;
+  @include useFlex(column);
+  gap: 90px;
+  //margin-inline: 15px;
+  //padding-left: 50px;
 
-	&__main--groups {
-		@include useFlex(row);
-		gap: 50px;
-		flex-wrap: wrap;
-	}
+  &__main--groups {
+    @include useFlex(row);
+    //gap: 50px;
+    flex-wrap: wrap;
+    }
 
-	&__main--finals {
-		display: grid;
-		grid-template-columns: repeat(5, 1fr);
-		grid-template-areas: "huitieme quart demi finale winner";
-		column-gap: 50px;
+  &__main--finals {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-areas: "huitieme quart demi finale winner";
+    //column-gap: 50px;
 
-		.final {
-			@include useFlex;
-			gap: 50px;
-			flex-wrap: wrap;
-			grid-area: auto;
-		}
-	}
-}
+    .final {
+      @include useFlex;
+      flex-wrap: wrap;
+      gap: 50px;
+      grid-area: auto;
+      }
+    }
+  }
 
 .isPlayed {
-	td {
-		//color: color.$salmon;
-	}
+  td {
+    //color: color.$salmon;
+    }
 
-	.winner {
-		//color: color.$valid;
-		font-weight: bold;
-	}
+  .winner {
+    //color: color.$valid;
+    font-weight: bold;
+    }
 
-	.looser {
-		//color: color.$dimmed;
-		opacity: 0.5;
-	}
-}
+  .looser {
+    //color: color.$dimmed;
+    opacity: 0.5;
+    }
+  }
 
 table {
-	margin: 15px 5px;
-}
+  margin: 15px 5px;
+  }
 
 .th {
-	th {
-		padding: 2px 5px;
-		color: color.$teal;
-	}
+  th {
+    padding: 2px 5px;
+    color: color.$teal;
+    }
 
-	&__name {
-	}
+  &__name {
+    }
 
-	&__flag {
-	}
+  &__flag {
+    }
 
-	&__label {
-	}
+  &__label {
+    }
 
-	&__xp {
-	}
+  &__xp {
+    }
 
-	&__attack {
-	}
+  &__attack {
+    }
 
-	&__defense {
-	}
+  &__defense {
+    }
 
-	&__stamina {
-	}
+  &__stamina {
+    }
 
-	&__mood {
-	}
-}
+  &__mood {
+    }
+  }
 
 .tbody {
-	td {
-		padding: 2px 5px;
-		text-align: center;
-	}
+  td {
+    padding: 2px 5px;
+    text-align: center;
+    }
 
-	&__name {
-	}
+  &__name {
+    }
 
-	&__flag {
-	}
+  &__flag {
+    }
 
-	&__label {
-	}
+  &__label {
+    }
 
-	&__xp {
-	}
+  &__xp {
+    }
 
-	&__attack {
-	}
+  &__attack {
+    }
 
-	&__defense {
-	}
+  &__defense {
+    }
 
-	&__stamina {
-	}
+  &__stamina {
+    }
 
-	&__mood {
-	}
-}
+  &__mood {
+    }
+  }
 
 .card__content {
-	@include useBoxModel;
-}
+  @include useBoxModel;
+  }
 
 //endregion

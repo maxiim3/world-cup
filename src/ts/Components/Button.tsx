@@ -31,7 +31,7 @@ export function Button({handlePlayMatch, updateStatus} :ButtonProps) {
 				return updateStatus(StatusEnum.archived)
 			}
 		}
-	}, [buttonState,handlePlayMatch, updateStatus,setButtonInnerText, setButtonIsDisabled])
+	}, [buttonState ,setButtonInnerText, setButtonIsDisabled])
 
 	return (
 		<button

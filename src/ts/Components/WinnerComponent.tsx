@@ -3,7 +3,7 @@ import React, {useEffect, useId, useState} from "react"
 import {TeamModel} from "../Classes/TeamModel"
 import {useFetchFromLocalStorage} from "../Hooks/useFetchFromLocalStorage"
 import {Tools} from "../Misc/Utils/Tools"
-import {TeamLayout} from "../Layouts/TeamLayout"
+import {TableRowLayout} from "../Layouts/TableRowLayout"
 import {WinnerModel} from "../Classes/WinnerModel"
 import {TableLayout} from "../Layouts/TableLayout"
 
@@ -31,7 +31,7 @@ export function WinnerComponent() {
 					<TableLayout
 						key={Tools.generateId(id)}
 						isPlayed={false}>
-						<TeamLayout
+						<TableRowLayout
 							key={id}
 							team={winner}
 						/>
@@ -39,5 +39,6 @@ export function WinnerComponent() {
 				</CardLayout>
 			</article>
 		)
-	} else return <h3>LOADING</h3>
+	}
+	else return <h3>LOADING</h3>
 }

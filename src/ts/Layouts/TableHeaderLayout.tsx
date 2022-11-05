@@ -8,10 +8,6 @@ export function TableHeaderLayout({label}: {label?: string}) {
 			<th className={"th__flag"}>FLAG</th>
 			<th className={"th__label"}>{label}</th>
 			<th className={"th__xp"}>XP</th>
-			<th className={"th__attack"}>attack</th>
-			<th className={"th__defense"}>defense</th>
-			<th className={"th__stamina"}>stamina</th>
-			<th className={"th__mood"}>mood</th>
 		</tr>
 		</thead>
 	)

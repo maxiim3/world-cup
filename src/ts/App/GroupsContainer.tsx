@@ -9,13 +9,25 @@ import {MatchModel} from "../Classes/MatchModel"
 export function GroupsContainer({teams, updateStatus}: {teams: TeamModel[]; updateStatus: Function}) {
 	const mapGroups = [
 		{label: "group_A", teams: teams.filter(team => team.group === "A")},
-		{label: "group_B", teams: teams.filter(team => team.group === "B")},
+		{
+			label: "group_B",
+			teams: teams.filter(team => team.group === "B"),
+		},
 		{label: "group_C", teams: teams.filter(team => team.group === "C")},
-		{label: "group_D", teams: teams.filter(team => team.group === "D")},
+		{
+			label: "group_D",
+			teams: teams.filter(team => team.group === "D"),
+		},
 		{label: "group_E", teams: teams.filter(team => team.group === "E")},
-		{label: "group_F", teams: teams.filter(team => team.group === "F")},
+		{
+			label: "group_F",
+			teams: teams.filter(team => team.group === "F"),
+		},
 		{label: "group_G", teams: teams.filter(team => team.group === "G")},
-		{label: "group_H", teams: teams.filter(team => team.group === "H")},
+		{
+			label: "group_H",
+			teams: teams.filter(team => team.group === "H"),
+		},
 	]
 
 	// GROUPS
@@ -56,11 +68,11 @@ export function GroupsContainer({teams, updateStatus}: {teams: TeamModel[]; upda
 
 	return (
 		<>
-			<Button
-				updateStatus={updateStatus}
-				handlePlayMatch={() => setGroups(handlePlayMatch())}
-			/>
 			<ContainerLayout title={"Phases De Groupe"}>
+				<Button
+					updateStatus={updateStatus}
+					handlePlayMatch={() => setGroups(handlePlayMatch())}
+				/>
 				{groups.map(group => (
 					<Group
 						key={Tools.generateId(`${groups.indexOf(group)}`)}

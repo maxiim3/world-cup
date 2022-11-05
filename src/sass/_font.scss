@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=El+Messiri:wght@700&family=Yeseva+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Nunito:wght@300;400;500&family=Poppins:wght@300;400;500&display=swap');
+
+$title-one: 'El Messiri', sans-serif;
+$title-two: 'Yeseva One', cursive;
+
+$main-one: 'Lora', serif;
+$main-two: 'Nunito', sans-serif;
+$main-three: 'Poppins', sans-serif;
+
+$sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
+$base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+$md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
+$lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
+$xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
+$xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+$xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
+
+h1 { font-family: $title-one;}
+
+h1 {font-size: $xxl}
+
+h2 {font-size: $xl}
+
+h3 {font-size: $lg}
+
+h4 {font-size: $md}
+
+p, a, li, td, th, button {font-size: $base}

@@ -35,44 +35,93 @@ export class MatchModel {
 		}
 	}
 
-	private refactorScore(hostScore: number, guestScore: number) {
-		const modulo = (n: number) => {
-			return hostScore % n === 0 && guestScore % n === 0
+	runEliminationMatch() {
+		while (this.guest.score === this.host.score) {
+			// Match a elimination direct, rejoue le match si égalité
+			this.play()
 		}
 
-		if (modulo(5)) {
-			if (modulo(10)) return [hostScore - 4, guestScore - 9]
-			return [hostScore, guestScore - 5]
-		} else if (modulo(2)) {
-			if (modulo(4)) return [hostScore / 4, guestScore / 4]
-			return [hostScore / 2, guestScore / 2]
-		} else if (modulo(3)) {
-			if (modulo(9)) return [hostScore / 9, guestScore / 9]
-			else if (modulo(6)) return [hostScore / 6, guestScore / 6]
-			return [hostScore / 3, guestScore / 3]
-		}
-		else if (Math.abs(hostScore - guestScore) > 6 || hostScore > 6 || guestScore > 6)
-			return [Math.ceil(Math.round(hostScore / 2)), Math.ceil(Math.round(guestScore / 2))]
-		else return [hostScore, guestScore]
+		this.initialHost.score = this.host.score
+		this.initialGuest.score = this.guest.score
+
+		const [winner, looser] = this.updateTeams()
+		const [updatedWinner, updatedLooser] = this.refactorScore(winner, looser)
+
+		updatedWinner.isQualified = true
+		updatedLooser.isQualified = false
+		return [updatedWinner, updatedLooser]
+	}
+
+	runGroupMatch() {
+		this.play()
+
+		// const [hostScore, guestScore] = this.refactorScore(this.host.score, this.guest.score)
+		const winner = this.host.score > this.guest.score ? this.initialHost : this.initialGuest
+		winner.score += 3
+
+		return this.updateTeams()
+	}
+
+	private refactorScore(winner: TeamModel, looser: TeamModel) {
+		let diff: number = winner.score - looser.score
+
+
+		diff = diff > 2 ? Math.round(Math.log(diff)) : diff
+		const goals = [0, 2, 1, 0, 2, 4, 0, 1, 0, 0, 2, 1, 3, 0, 1, 0, 0, 0, 2, 1, 0, 2, 0, 1, 1, 3, 0, 1, 0, 1, 0, 2, 0]
+		const randomIndex = Tools.RandomNumber(goals.length - 1)
+		looser.score = goals[randomIndex]
+		winner.score = looser.score + diff
+		return [winner, looser]
 	}
 
 	private play() {
-		const hostTries = Math.round((this.host.flySkills.attack * (this.host.flySkills.mood / 100)) / 10)
-		const guestTries = Math.round((this.guest.flySkills.attack * (this.guest.flySkills.mood / 100)) / 10)
+		const getTries = ({attack, mood, stamina}: {attack: number; mood: number; stamina: number}) => {
+			const logAndRound = (n: number) => Math.round(Math.log(n))
+			const sqrtAndRound = (n: number) => Math.round(Math.sqrt(n))
+			const logStamina = logAndRound(stamina)
+			const logMood = logAndRound(mood)
+			const sqrtAttack = sqrtAndRound(attack)
+			const logAttack = logAndRound(attack)
+			return logMood + logAttack + sqrtAttack + logStamina - 10
+		}
+		const hostTries = getTries(this.host.flySkills)
+		const guestTries = getTries(this.guest.flySkills)
+
+		const hostAttack = (attacker: TeamMatchModel, defender: TeamMatchModel) => {
+			const attackerMultiple = (attacker.flySkills.stamina / 100 + attacker.flySkills.mood / 100) / 2
+			const attackerPoints = attacker.flySkills.attack * attackerMultiple
+			const defenderMultiple = (defender.flySkills.stamina / 100 + defender.flySkills.mood / 100) / 2
+			const defenderPoints = defender.flySkills.defense * defenderMultiple
+
+			const attackerScore = Tools.RandomNumber(100) + attackerPoints
+			// reset mood
+			const defenderScore = Tools.RandomNumber(100) + defenderPoints
+
+			return attackerScore > defenderScore
+		}
+
+		const resetSkills = () => {
+			this.host.flySkills = Object.assign({}, this.initialHost.skills)
+			this.guest.flySkills = Object.assign({}, this.initialGuest.skills)
+		}
 
 		function handleTries(attacker: TeamMatchModel, defender: TeamMatchModel, tries: number) {
+			resetSkills()
 			for (let i = 0; i < tries; i++) {
 				// console.log(i)
+				// diminish defender stamina
 				const hasScored = hostAttack(attacker, defender)
-				attacker.flySkills.stamina -= 5
+				attacker.flySkills.stamina -= 2
+				defender.flySkills.stamina -= 1
 				if (hasScored) {
 					attacker.score++
-					attacker.flySkills.mood += 5
-					attacker.flySkills.attack += 3
+					attacker.flySkills.mood += 2
+					attacker.flySkills.attack += 1
 
-					defender.flySkills.mood -= 5
-					defender.flySkills.defense -= 2
-				} else {
+					defender.flySkills.mood -= 2
+					defender.flySkills.defense -= 1
+				}
+				else {
 					attacker.flySkills.mood -= 2
 					attacker.flySkills.attack -= 1
 
@@ -80,18 +129,6 @@ export class MatchModel {
 					defender.flySkills.defense += 1
 				}
 			}
-		}
-
-		function hostAttack(attacker: TeamMatchModel, defender: TeamMatchModel) {
-			const attackerMultiple = (attacker.flySkills.stamina / 100 + attacker.flySkills.mood / 100) / 2
-			const attackerPoints = attacker.flySkills.attack * attackerMultiple
-			const defenderMultiple = (defender.flySkills.stamina / 100 + defender.flySkills.mood / 100) / 2
-			const defenderPoints = defender.flySkills.defense * defenderMultiple
-
-			const attackerScore = Tools.RandomNumber(100) + attackerPoints
-			const defenderScore = Tools.RandomNumber(100) + defenderPoints
-
-			return attackerScore > defenderScore
 		}
 
 		handleTries(this.host, this.guest, hostTries)
@@ -119,31 +156,5 @@ export class MatchModel {
 		looser.skills.stamina -= 3
 
 		return [winner, looser]
-	}
-
-	runEliminationMatch() {
-		while (this.guest.score === this.host.score) {
-			// Match a elimination direct, rejoue le match si égalité
-			this.play()
-		}
-		const [hostScore, guestScore] = this.refactorScore(this.host.score, this.guest.score)
-
-		this.initialHost.score = hostScore
-		this.initialGuest.score = guestScore
-
-		const [winner, looser] = this.updateTeams()
-		winner.isQualified = true
-		looser.isQualified = false
-		return [winner, looser]
-	}
-
-	runGroupMatch() {
-		this.play()
-
-		// const [hostScore, guestScore] = this.refactorScore(this.host.score, this.guest.score)
-		const winner = this.host.score > this.guest.score ? this.initialHost : this.initialGuest
-		winner.score += 3
-
-		return this.updateTeams()
 	}
 }

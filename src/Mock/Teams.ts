@@ -1,3 +1,5 @@
+//todo Maks SVG of Flags
+
 export const Teams = [
 	{
 		name: "Qatar",
@@ -7,8 +9,8 @@ export const Teams = [
 			attack: 59,
 			defense: 44,
 			stamina: 67,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Ecuador",
@@ -18,8 +20,8 @@ export const Teams = [
 			attack: 62,
 			defense: 68,
 			stamina: 70,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Senegal",
@@ -29,8 +31,8 @@ export const Teams = [
 			attack: 62,
 			defense: 70,
 			stamina: 80,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Netherlands",
@@ -40,8 +42,8 @@ export const Teams = [
 			attack: 82,
 			defense: 91,
 			stamina: 81,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "England",
@@ -51,8 +53,8 @@ export const Teams = [
 			attack: 88,
 			defense: 85,
 			stamina: 88,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Iran",
@@ -62,8 +64,8 @@ export const Teams = [
 			attack: 70,
 			defense: 73,
 			stamina: 65,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "USA",
@@ -73,8 +75,8 @@ export const Teams = [
 			attack: 69,
 			defense: 75,
 			stamina: 80,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Wales",
@@ -84,8 +86,8 @@ export const Teams = [
 			attack: 59,
 			defense: 68,
 			stamina: 72,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Argentina",
@@ -95,8 +97,8 @@ export const Teams = [
 			attack: 91,
 			defense: 87,
 			stamina: 85,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Saudi-Arabia",
@@ -106,8 +108,8 @@ export const Teams = [
 			attack: 54,
 			defense: 49,
 			stamina: 67,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Mexico",
@@ -117,8 +119,8 @@ export const Teams = [
 			attack: 77,
 			defense: 79,
 			stamina: 81,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Poland",
@@ -128,8 +130,8 @@ export const Teams = [
 			attack: 72,
 			defense: 74,
 			stamina: 74,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "France",
@@ -139,8 +141,8 @@ export const Teams = [
 			attack: 92,
 			defense: 90,
 			stamina: 88,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Australia",
@@ -150,8 +152,8 @@ export const Teams = [
 			attack: 64,
 			defense: 67,
 			stamina: 68,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Denmark",
@@ -161,8 +163,8 @@ export const Teams = [
 			attack: 79,
 			defense: 82,
 			stamina: 81,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Tunisia",
@@ -172,8 +174,8 @@ export const Teams = [
 			attack: 71,
 			defense: 94,
 			stamina: 69,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Spain",
@@ -183,8 +185,8 @@ export const Teams = [
 			attack: 88,
 			defense: 90,
 			stamina: 84,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Costa-Rica",
@@ -194,8 +196,8 @@ export const Teams = [
 			attack: 69,
 			defense: 64,
 			stamina: 68,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Germany",
@@ -205,8 +207,8 @@ export const Teams = [
 			attack: 88,
 			defense: 93,
 			stamina: 88,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Japan",
@@ -216,8 +218,8 @@ export const Teams = [
 			attack: 77,
 			defense: 69,
 			stamina: 68,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Belgium",
@@ -227,8 +229,8 @@ export const Teams = [
 			attack: 86,
 			defense: 88,
 			stamina: 84,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Canada",
@@ -238,8 +240,8 @@ export const Teams = [
 			attack: 59,
 			defense: 64,
 			stamina: 68,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Morocco",
@@ -249,8 +251,8 @@ export const Teams = [
 			attack: 68,
 			defense: 69,
 			stamina: 61,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Croatia",
@@ -260,8 +262,8 @@ export const Teams = [
 			attack: 79,
 			defense: 81,
 			stamina: 80,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Brazil",
@@ -271,8 +273,8 @@ export const Teams = [
 			attack: 94,
 			defense: 87,
 			stamina: 88,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Serbia",
@@ -282,8 +284,8 @@ export const Teams = [
 			attack: 82,
 			defense: 79,
 			stamina: 81,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Switzerland",
@@ -293,8 +295,8 @@ export const Teams = [
 			attack: 75,
 			defense: 72,
 			stamina: 71,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Cameroun",
@@ -304,8 +306,8 @@ export const Teams = [
 			attack: 68,
 			defense: 71,
 			stamina: 75,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Portugal",
@@ -315,8 +317,8 @@ export const Teams = [
 			attack: 84,
 			defense: 80,
 			stamina: 84,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Ghana",
@@ -326,8 +328,8 @@ export const Teams = [
 			attack: 59,
 			defense: 62,
 			stamina: 68,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "Uruguay",
@@ -337,8 +339,8 @@ export const Teams = [
 			attack: 80,
 			defense: 84,
 			stamina: 84,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 	{
 		name: "South-Korea",
@@ -348,7 +350,7 @@ export const Teams = [
 			attack: 76,
 			defense: 71,
 			stamina: 71,
-			mood: 100
-		}
+			mood: 100,
+		},
 	},
 ]

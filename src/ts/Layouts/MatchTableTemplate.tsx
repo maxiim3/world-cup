@@ -1,7 +1,7 @@
 import {TeamModel} from "../Classes/TeamModel"
 import {Tools} from "../Misc/Utils/Tools"
 import React from "react"
-import {TeamLayout} from "./TeamLayout"
+import {TableRowLayout} from "./TableRowLayout"
 import {TableLayout} from "./TableLayout"
 
 export function MatchTableTemplate({teams, isPlayed = false}: {teams: TeamModel[], isPlayed?: boolean}) {
@@ -10,11 +10,11 @@ export function MatchTableTemplate({teams, isPlayed = false}: {teams: TeamModel[
 
 	return (
 		<TableLayout key={Tools.generateId(firstTeamID + secondTeamID)} isPlayed={isPlayed}>
-			<TeamLayout
+			<TableRowLayout
 				key={firstTeamID}
 				team={teams[0]}
 			/>
-			<TeamLayout
+			<TableRowLayout
 				key={secondTeamID}
 				team={teams[1]}
 			/>
