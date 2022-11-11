@@ -1,10 +1,10 @@
 import React, {useMemo, useState} from "react"
 import ContainerLayout from "../Layouts/ContainerLayout"
-import {fetchTeams} from "../Misc/Utils/FetchTeams"
-import {StatusEnum} from "../Misc/Enums/StatusEnum"
+import {fetchTeams} from "../Utils/FetchTeams"
+import {StatusEnum} from "../Enums/StatusEnum"
 import {Finals} from "./FinalsContainer"
 import {GroupsContainer} from "./GroupsContainer"
-import {APP_STATE} from "../Misc/Constant/APP_STATE"
+import {APP_STATE} from "../Constant/APP_STATE"
 
 export function App() {
 	const [appState, setAppState] = useState(APP_STATE.loading)

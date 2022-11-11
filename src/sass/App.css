@@ -44,14 +44,34 @@ body {
 }
 
 #header__root {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
   height: 100vh;
   color: #EEEEE5;
   background-color: #444141;
-  padding-block: 45vw;
+  grid-template-areas: "top " "middle " "bottom";
+}
+#header__root h1 {
+  align-self: center;
+  text-align: center;
+  justify-self: center;
+}
+#header__root button {
+  align-self: center;
+  justify-self: center;
+  padding: 15px 30px;
+  border-radius: 15px;
+  border: 1px gray solid;
+}
+
+#ballIcon {
+  position: absolute;
+  z-index: 1;
+  top: 10vh;
+  left: -200px;
+  width: min(50vh, 760px);
+  animation: rotateInfinite 35s linear infinite;
+  opacity: 0.4;
+  fill: #201f1f;
 }
 
 #main__root {
@@ -121,17 +141,6 @@ td,
 th,
 button {
   font-size: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
-}
-
-#ballIcon {
-  position: absolute;
-  z-index: 1;
-  top: 10vh;
-  left: -30vw;
-  width: min(50vh, 760px);
-  animation: rotateInfinite 35s linear infinite;
-  opacity: 0.4;
-  fill: #201f1f;
 }
 
 @keyframes rotateInfinite {
