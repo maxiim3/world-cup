@@ -1,6 +1,6 @@
 import {TeamModel} from "../Classes/TeamModel"
 import React, {useEffect, useState} from "react"
-import {Tools} from "../Misc/Utils/Tools"
+import {Tools} from "../Utils/Tools"
 import {Button} from "../Components/Button"
 import ContainerLayout from "../Layouts/ContainerLayout"
 import {Group} from "../Components/Group"

@@ -1,7 +1,7 @@
 import {TeamModel} from "./TeamModel"
 import {LocalStorageModel} from "./LocalStorageModel"
-import {StageModel} from "../Misc/Interfaces/StageModel"
-import {Tools} from "../Misc/Utils/Tools"
+import {StageModel} from "../Interfaces/StageModel"
+import {Tools} from "../Utils/Tools"
 
 export class FinalModel implements StageModel {
 	private teams: TeamModel[][]

@@ -8,7 +8,6 @@
 //region base
 body {
   color: color.$secondary;
-  background-color: color.$dark;
   }
 
 .loading {
@@ -25,7 +24,8 @@ body {
   display: grid;
   height: 100vh;
   color: color.$secondary;
-  background-color: color.$dimmed;
+  background: rgb(126, 34, 57);
+  background: linear-gradient(315deg, rgba(126, 34, 57, 1) 0%, rgba(33, 14, 108, 1) 53%, rgba(0, 212, 255, 1) 100%);
   grid-template-areas: "top " "middle " "bottom";
 
   h1 {
@@ -44,21 +44,37 @@ body {
 #ballIcon {
   position: absolute;
   z-index: 1;
-  top: 10vh;
+  top: -200px;
   left: -200px;
-  width: min(50vh, 760px);
+  width: min(230vh, 900px);
   animation: rotateInfinite 35s linear infinite;
   opacity: 0.4;
   fill: color.$dark;
+  filter: blur(10px);
   }
 
 #main__root {
+  position: relative;
   display: none;
-  @include mixins.useFlex();
   width: 100%;
+  @include mixins.useFlex();
   height: 100%;
+  background: rgb(126, 34, 57);
+  background: linear-gradient(218deg, rgba(126, 34, 57, 1) 0%, rgba(33, 14, 108, 1) 63%, rgba(21, 101, 117, 1) 100%);
+  padding-block: 100px;
   gap: 30px;
   //margin-block: 25px;
+  &:before {
+    $height-offset: 20px;
+    position: absolute;
+    top: - $height-offset;
+    display: block;
+    width: 100vw;
+    height: $height-offset;
+    content: '';
+    background: #000;
+    filter: blur(3px)
+    }
   }
 
 //region fonts
@@ -160,8 +176,8 @@ button {
 
   &__main--groups {
     @include mixins.useFlex(row);
-    //gap: 50px;
     flex-wrap: wrap;
+    gap: 50px;
     }
 
   &__main--finals {
@@ -264,35 +280,22 @@ table {
 .card__content {
   @include mixins.useBoxModel;
 
-  &--group {
-    width: min(90vw, 550px);
-    height: 15rem;
-    transition: height 550ms ease-in-out;
-    color: color.$primary;
-    background: color.$secondary;
+  width: 400px;
+  transition: height 550ms ease-in-out;
+  color: color.$primary;
+  background: color.$secondary;
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      }
-
-    main {
-      position: relative;
-      overflow: hidden;
-      }
-
-    &[data-visible="false"] {
-      height: 5rem;
-
-      table {
-        animation: slideOut 550ms ease-in-out both;
-        }
-      }
-
-    table {
-      animation: slideIn 550ms both ease-in-out;
-      }
+  header {
+    display: flex;
+    justify-content: space-between;
     }
+
+  main {
+    position: relative;
+    overflow: hidden;
+    }
+
+
   }
 
 @keyframes slideIn {

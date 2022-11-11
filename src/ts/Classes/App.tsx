@@ -1,10 +1,10 @@
 import ReactDOM, {Root} from "react-dom/client"
 import React from "react"
-import {Header} from "../Components/header"
-import {App} from "../App/App"
+import {Header} from "../Components/Header"
+import {Main} from "../App/Main"
 
 
-export class RenderApp {
+export class App {
 	private mainRoot: Root
 	private headerRoot: Root
 
@@ -25,7 +25,7 @@ export class RenderApp {
 	renderMain() {
 		return this.mainRoot.render(
 			<React.StrictMode>
-				<App />
+				<Main />
 			</React.StrictMode>,
 		)
 	}

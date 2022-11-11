@@ -1,5 +1,5 @@
 import {TeamModel} from "./TeamModel"
-import {Tools} from "../Misc/Utils/Tools"
+import {Tools} from "../Utils/Tools"
 
 export type TeamFlyProps = {
 	attack: number

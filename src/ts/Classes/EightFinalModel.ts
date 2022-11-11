@@ -1,9 +1,9 @@
 import {TeamModel} from "./TeamModel"
-import {LocalStorageDataProps} from "../Misc/Types/LocalStorageDataProps"
-import {GROUP_KEYS} from "../Misc/Constant/GROUP_KEYS"
+import {LocalStorageDataProps} from "../Types/LocalStorageDataProps"
+import {GROUP_KEYS} from "../Constant/GROUP_KEYS"
 import {LocalStorageModel} from "./LocalStorageModel"
-import {Tools} from "../Misc/Utils/Tools"
-import {StageModel} from "../Misc/Interfaces/StageModel"
+import {Tools} from "../Utils/Tools"
+import {StageModel} from "../Interfaces/StageModel"
 
 export class EightFinalModel implements StageModel {
 	private teams: TeamModel[][]
@@ -32,11 +32,11 @@ export class EightFinalModel implements StageModel {
 		const group2: string = GROUP_KEYS[secondGroup]
 
 		const firstTeam: TeamModel = this.fetchedTeams
-			? this.fetchedTeams.filter(group => group.label === group1)[0].teams[0]
-			: Tools.generateFakeTeam()
+									 ? this.fetchedTeams.filter(group => group.label === group1)[0].teams[0]
+									 : Tools.generateFakeTeam()
 		const secondTeam: TeamModel = this.fetchedTeams
-			? this.fetchedTeams.filter(group => group.label === group2)[0].teams[1]
-			: Tools.generateFakeTeam()
+									  ? this.fetchedTeams.filter(group => group.label === group2)[0].teams[1]
+									  : Tools.generateFakeTeam()
 		return [firstTeam, secondTeam]
 	}
 

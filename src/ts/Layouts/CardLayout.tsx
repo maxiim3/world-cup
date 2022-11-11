@@ -8,21 +8,12 @@ export type FinalsProps = {
 }
 
 export function CardLayout({title, children, label = "final"}: FinalsProps) {
-	const [isVisible, setIsVisible] = useState<boolean>(() => sessionStorage.getItem(`${title}`) === "true" ? true : sessionStorage.getItem(`${title}`) !== "false")
-	useEffect(() => {
-		sessionStorage.setItem(`${title}`, JSON.stringify(isVisible))
-	}, [isVisible])
-
 	return (
 		<section
-			data-visible={isVisible.toString()}
 			className={"card__content card__content--" + label}
 			id={label}>
 			<header>
 				<h3>{title}</h3>
-				{label === "group" && (
-					<button onClick={() => setIsVisible(!isVisible)}>{isVisible ? "Hide" : "Show"}</button>
-				)}
 			</header>
 			<main>{children}</main>
 		</section>

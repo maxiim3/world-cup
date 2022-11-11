@@ -4,7 +4,7 @@ import {EightFinalModel} from "../Classes/EightFinalModel"
 import {Button} from "./Button"
 import {CardLayout} from "../Layouts/CardLayout"
 import {MatchTableTemplate} from "../Layouts/MatchTableTemplate"
-import {Tools} from "../Misc/Utils/Tools"
+import {Tools} from "../Utils/Tools"
 import {useIsPlayed} from "../Hooks/useIsPlayed"
 import usePlayMatch from "../Hooks/usePlayMatch"
 import {useFetchFromLocalStorage} from "../Hooks/useFetchFromLocalStorage"
@@ -14,7 +14,7 @@ export function EightFinalComponent({updateStatus}: {updateStatus: Function}) {
 
 	let [matches, setMatches] = useState<TeamModel[][]>([])
 	useEffect(() => {
-			localStorage.eighthFinal = JSON.stringify(matches)
+		localStorage.eighthFinal = JSON.stringify(matches)
 		return () => {
 		}
 	}, [matches])
@@ -43,5 +43,6 @@ export function EightFinalComponent({updateStatus}: {updateStatus: Function}) {
 				</CardLayout>
 			</article>
 		)
-	} else return <h3>LOADING</h3>
+	}
+	else return <h3>LOADING</h3>
 }

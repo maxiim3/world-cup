@@ -3,9 +3,9 @@
 *,
 *:before,
 *:after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   list-style: none;
 }
 
@@ -22,6 +22,7 @@ html {
 
 body {
   display: flex;
+  overflow-x: hidden;
   flex-flow: column nowrap;
 }
 
@@ -32,7 +33,6 @@ a:hover {
 
 body {
   color: #EEEEE5;
-  background-color: #201f1f;
 }
 
 .loading {
@@ -47,7 +47,8 @@ body {
   display: grid;
   height: 100vh;
   color: #EEEEE5;
-  background-color: #444141;
+  background: rgb(126, 34, 57);
+  background: linear-gradient(315deg, rgb(126, 34, 57) 0%, rgb(33, 14, 108) 53%, rgb(0, 212, 255) 100%);
   grid-template-areas: "top " "middle " "bottom";
 }
 #header__root h1 {
@@ -66,23 +67,38 @@ body {
 #ballIcon {
   position: absolute;
   z-index: 1;
-  top: 10vh;
+  top: -200px;
   left: -200px;
-  width: min(50vh, 760px);
+  width: min(230vh, 900px);
   animation: rotateInfinite 35s linear infinite;
   opacity: 0.4;
   fill: #201f1f;
+  filter: blur(10px);
 }
 
 #main__root {
+  position: relative;
   display: none;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
   height: 100%;
+  background: rgb(126, 34, 57);
+  background: linear-gradient(218deg, rgb(126, 34, 57) 0%, rgb(33, 14, 108) 63%, rgb(21, 101, 117) 100%);
+  padding-block: 100px;
   gap: 30px;
+}
+#main__root:before {
+  position: absolute;
+  top: -20px;
+  display: block;
+  width: 100vw;
+  height: 20px;
+  content: "";
+  background: #000;
+  filter: blur(3px);
 }
 
 h1,
@@ -178,6 +194,7 @@ button {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 50px;
 }
 .container__main--finals {
   display: grid;
@@ -217,30 +234,18 @@ table {
   padding: 15px 30px;
   border-radius: 15px;
   border: 1px gray solid;
-}
-.card__content--group {
-  width: min(90vw, 550px);
-  height: 15rem;
+  width: 400px;
   transition: height 550ms ease-in-out;
   color: #7E2339;
   background: #EEEEE5;
 }
-.card__content--group header {
+.card__content header {
   display: flex;
   justify-content: space-between;
 }
-.card__content--group main {
+.card__content main {
   position: relative;
   overflow: hidden;
-}
-.card__content--group[data-visible=false] {
-  height: 5rem;
-}
-.card__content--group[data-visible=false] table {
-  animation: slideOut 550ms ease-in-out both;
-}
-.card__content--group table {
-  animation: slideIn 550ms both ease-in-out;
 }
 
 @keyframes slideIn {

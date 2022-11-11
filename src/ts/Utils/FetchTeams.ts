@@ -1,4 +1,4 @@
-import {TeamModel} from "../../Classes/TeamModel"
+import {TeamModel} from "../Classes/TeamModel"
 
 const data = [
 	{

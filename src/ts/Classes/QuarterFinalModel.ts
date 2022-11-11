@@ -1,7 +1,7 @@
 import {TeamModel} from "./TeamModel"
 import {LocalStorageModel} from "./LocalStorageModel"
-import {StageModel} from "../Misc/Interfaces/StageModel"
-import {Tools} from "../Misc/Utils/Tools"
+import {StageModel} from "../Interfaces/StageModel"
+import {Tools} from "../Utils/Tools"
 
 export class QuarterFinalModel implements StageModel {
 	private teams: TeamModel[][]
@@ -32,8 +32,8 @@ export class QuarterFinalModel implements StageModel {
 		const secondTeam = this.fetchedTeams[secondGroup].find(team => team.isQualified)
 
 		return firstTeam && secondTeam
-			? [this.resetTeam(firstTeam), this.resetTeam(secondTeam)]
-			: [Tools.generateFakeTeam(), Tools.generateFakeTeam()]
+			   ? [this.resetTeam(firstTeam), this.resetTeam(secondTeam)]
+			   : [Tools.generateFakeTeam(), Tools.generateFakeTeam()]
 	}
 
 	private mapTeams(): [TeamModel[], TeamModel[], TeamModel[], TeamModel[]] {

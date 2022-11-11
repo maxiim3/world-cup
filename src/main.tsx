@@ -1,10 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import React from "react"
+import {resetLocalStorage} from "./ts/Utils/resetLocalStorage"
+import {App} from "./ts/Classes/App"
+import {documentHeadAttributes} from "./ts/Utils/document.head.attributes"
+import "./sass/App.css"
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-)
+documentHeadAttributes()
+resetLocalStorage()
+
+const app = new App()
+app.init()

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import {StatusEnum} from "../Misc/Enums/StatusEnum"
+import {StatusEnum} from "../Enums/StatusEnum"
 
 export type ButtonProps = {
 	handlePlayMatch: Function,
@@ -13,7 +13,7 @@ export type ButtonProps = {
  * @return {JSX.Element}
  * @constructor
  */
-export function Button({handlePlayMatch, updateStatus} :ButtonProps) {
+export function Button({handlePlayMatch, updateStatus}: ButtonProps) {
 	const [buttonInnerText, setButtonInnerText] = useState("Let's Play")
 	const [buttonIsDisabled, setButtonIsDisabled] = useState(false)
 
@@ -31,12 +31,12 @@ export function Button({handlePlayMatch, updateStatus} :ButtonProps) {
 				return updateStatus(StatusEnum.archived)
 			}
 		}
-	}, [buttonState ,setButtonInnerText, setButtonIsDisabled])
+	}, [buttonState, setButtonInnerText, setButtonIsDisabled])
 
 	return (
 		<button
 			className={"changeRoundBtn"}
-			data-disabled = {buttonIsDisabled}
+			data-disabled={buttonIsDisabled}
 			disabled={buttonIsDisabled}
 			onClick={() => setButtonState(buttonState + 1)}>
 			{buttonInnerText}

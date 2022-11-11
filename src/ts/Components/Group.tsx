@@ -1,6 +1,6 @@
 import React from "react"
 import {TeamModel} from "../Classes/TeamModel"
-import {Tools} from "../Misc/Utils/Tools"
+import {Tools} from "../Utils/Tools"
 import {TableRowLayout} from "../Layouts/TableRowLayout"
 import {CardLayout} from "../Layouts/CardLayout"
 import {TableLayout} from "../Layouts/TableLayout"

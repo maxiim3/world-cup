@@ -6,7 +6,7 @@ import {useFetchFromLocalStorage} from "../Hooks/useFetchFromLocalStorage"
 import usePlayMatch from "../Hooks/usePlayMatch"
 import {Button} from "./Button"
 import {MatchTableTemplate} from "../Layouts/MatchTableTemplate"
-import {Tools} from "../Misc/Utils/Tools"
+import {Tools} from "../Utils/Tools"
 import {FinalModel} from "../Classes/FinalModel"
 
 export function FinalComponent({updateStatus}: {updateStatus: Function}) {
@@ -17,7 +17,8 @@ export function FinalComponent({updateStatus}: {updateStatus: Function}) {
 	let [matches, setMatches] = useState<TeamModel[][]>([])
 	useEffect(() => {
 		localStorage.final = JSON.stringify(matches)
-		return () => {}
+		return () => {
+		}
 	}, [matches])
 
 	useFetchFromLocalStorage(setMatches, FinalModel)

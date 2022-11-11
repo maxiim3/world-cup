@@ -6,7 +6,7 @@ import {useFetchFromLocalStorage} from "../Hooks/useFetchFromLocalStorage"
 import usePlayMatch from "../Hooks/usePlayMatch"
 import {Button} from "./Button"
 import {MatchTableTemplate} from "../Layouts/MatchTableTemplate"
-import {Tools} from "../Misc/Utils/Tools"
+import {Tools} from "../Utils/Tools"
 import {SemiFinalModel} from "../Classes/SemiFinalModel"
 
 export function SemiFinalComponent({updateStatus}: {updateStatus: Function}) {
@@ -17,7 +17,8 @@ export function SemiFinalComponent({updateStatus}: {updateStatus: Function}) {
 	let [matches, setMatches] = useState<TeamModel[][]>([])
 	useEffect(() => {
 		localStorage.semiFinal = JSON.stringify(matches)
-		return () => {}
+		return () => {
+		}
 	}, [matches])
 
 	useFetchFromLocalStorage(setMatches, SemiFinalModel)

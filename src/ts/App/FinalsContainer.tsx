@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {StatusEnum} from "../Misc/Enums/StatusEnum"
+import {StatusEnum} from "../Enums/StatusEnum"
 import ContainerLayout from "../Layouts/ContainerLayout"
 import {EightFinalComponent} from "../Components/EightFinalComponent"
 import {QuarterFinalComponent} from "../Components/QuarterFinalComponent"

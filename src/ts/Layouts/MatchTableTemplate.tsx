@@ -1,5 +1,5 @@
 import {TeamModel} from "../Classes/TeamModel"
-import {Tools} from "../Misc/Utils/Tools"
+import {Tools} from "../Utils/Tools"
 import React from "react"
 import {TableRowLayout} from "./TableRowLayout"
 import {TableLayout} from "./TableLayout"
